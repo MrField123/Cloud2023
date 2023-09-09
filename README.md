@@ -12,6 +12,12 @@
     - Falls ja, Fehlermeldung
     - Falls nein, Option diesen einzulösen und zu invalidieren 
     
+Skalierung der DB: Master Slave (lesend, da mehr lesende als schreibende Zugriffe)
+Automatisches upscaling und downscaling, anhand welcher Metrik?
+https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/21
+
+Weshalb key value datenbank und keine relationale?
+
 ## Teil Prof. Sturm
 Welche Vorteile und Nachteile ergeben sich für Ihre Anwendung aus der Realisierung als Cloud
 Native? Zeigen Sie dabei auch alternative Realisierungsmöglichkeiten auf, stellen Sie diese der Cloud
