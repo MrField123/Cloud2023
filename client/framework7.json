@@ -1,0 +1,18 @@
+{
+  "cwd": "C:\\Users\\MBroeker\\Desktop\\CloudProject\\f7react",
+  "type": [
+    "web"
+  ],
+  "name": "f7react",
+  "framework": "react",
+  "template": "tabs",
+  "cssPreProcessor": false,
+  "bundler": "vite",
+  "theming": {
+    "customColor": true,
+    "color": "#03fcc2",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
