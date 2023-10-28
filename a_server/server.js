@@ -60,7 +60,7 @@ app.use(prometheusBundle({
 
 // Redirect / to person with ID l.mlb.com - p.7491
 app.get('/', function (request, response) {
-	response.(302, { 'Location': 'getvoucher/1' })
+	response.writeHead(302, { 'Location': 'getvoucher/1' })
 	response.end()
 })
 
