@@ -1,4 +1,4 @@
-CREATE TABLE `voucher` (
+CREATE TABLE `vouchers` (
   `id` int(11) NOT NULL auto_increment,
   `type` varchar(100) default NULL,
   `code` varchar(100) default NULL,
