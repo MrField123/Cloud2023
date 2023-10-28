@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db-deployment
+  name: mariadb-deployment
   labels:
-    app: my-db-deployment
+    app: my-mariadb-deployment
 spec:
   # A single mariadb instance
   replicas: 1
   selector:
     matchLabels:
-      app: db
+      app: my-mariadb
   template:
     metadata:
       labels:
-        app: db
+        app: my-mariadb
     spec:
       # Use the init container to download data to the location where the mariadb container expects it
       initContainers:
@@ -22,20 +22,20 @@ spec:
           args:
             - "-o"
             - "/tmp/data/init.sql" # we are saving downloaded file as init.sql in /tmp/data directory
-            - "init.sql"
+            - "https://farberg.de/talks/big-data/code/docker-compose/mariadb-data.sql"
           volumeMounts:
             - name: data-volume
               mountPath: /tmp/data
       # The actual mariadb database
       containers:
-        - name: db
+        - name: my-mariadb
           image: mariadb
           # Set required environment variables to initialize the container
           env:
             - name: MARIADB_ROOT_PASSWORD
               value: "mysecretpw"
             - name: MARIADB_DATABASE
-              value: "voucherdb"
+              value: "sportsdb"
           # Mount the volume that has been populated by the init container
           volumeMounts:
             - name: data-volume
