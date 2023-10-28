@@ -1,4 +1,3 @@
-
 CREATE TABLE `voucher` (
   `id` int(11) NOT NULL auto_increment,
   `type` varchar(100) default NULL,
