@@ -103,9 +103,6 @@ app.getAsync('/getvoucher/:id', async function (request, response) {
 	//}
 })
 
-// Add stress test endpoint, cf. https://github.com/bermi/inefficient
-app.get('/stress', inefficient)
-
 // Set port to start the app on
 app.set('port', (process.env.PORT || 8080))
 
