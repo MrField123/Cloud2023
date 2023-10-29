@@ -23,7 +23,7 @@ const pool = mariadb.createPool({
 //Get data from database
 async function getFromDatabase(id) {
 	let connection
-	let query = 'SELECT * from vouchers WHERE id = ? LIMIT 1'
+	let query = 'SELECT * from vouchers WHERE code = ? LIMIT 1'
 
 	try {
 		connection = await pool.getConnection()
