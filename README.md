@@ -1,4 +1,4 @@
-# Cloud 2023: Maximilian und Jonas Acker (1458459)
+# Cloud 2023: Maximilian Bröker () und Jonas Acker (1458459)
 ---
 ## Aufgabenteil Prof. Pfisterer
 ### Zielsetzung und Beschreibung der Anwendung
