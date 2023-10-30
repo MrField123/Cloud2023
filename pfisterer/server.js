@@ -97,7 +97,7 @@ app.use(prometheusBundle({
 
 // Redirect / to person with ID l.mlb.com - p.7491
 app.get('/', function (request, response) {
-	response.writeHead(302, { 'Location': 'person/l.mlb.com-p.7491' })
+	response. (302, { 'Location': 'person/l.mlb.com-p.7491' })
 	response.end()
 })
 
