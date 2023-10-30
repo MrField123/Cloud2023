@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voucher-hub-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voucher-hub
+  template:
+    metadata:
+      labels:
+        app: voucher-hub
+    spec:
+      containers:
+        - name: voucher-hub
+          image: voucher-hub-app
+          imagePullPolicy: Never # Uses Minikubes Docker image repo (minikube only)
+          ports:
+            - containerPort: 5173
