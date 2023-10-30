@@ -1,1 +1,18 @@
 /* Your app custom styles here */
+.qr-scanner-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Adjust the distance between BlockTitle and QR reader */
+  }
+
+
+  .qr-scanner-wrapper .block-title {
+    text-align: center; /* Center align the BlockTitle */
+  }
+  
+  .card-wrapper {
+    align-items: center;
+    margin-top: 100px; /* Adjust the distance between BlockTitle and Card */
+  }
+  

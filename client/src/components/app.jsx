@@ -10,21 +10,16 @@ import {
 
 
 import routes from '../js/routes';
-import store from '../js/store';
 
 const MyApp = () => {
   // Framework7 Parameters
   const f7params = {
-    name: 'f7react', // App name
+    name: 'VoucherHub', // App name
       theme: 'auto', // Automatic theme detection
       colors: {
         primary: '#03fcc2',
       },
 
-
-
-      // App store
-      store: store,
       // App routes
       routes: routes,
   };

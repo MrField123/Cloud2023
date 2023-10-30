@@ -20,4 +20,5 @@ RUN npm run build
 #Start application
 CMD ["npm", "start"]
 
+#build with docker build -t f7react-app .
 #start with docker run -p 8080:5173 f7react-app

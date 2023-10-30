@@ -3,7 +3,7 @@
   "type": [
     "web"
   ],
-  "name": "f7react",
+  "name": "VoucherHub",
   "framework": "react",
   "template": "tabs",
   "cssPreProcessor": false,
