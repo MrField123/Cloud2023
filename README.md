@@ -36,19 +36,19 @@ Im Folgenden werden zunächst die Vor- und Nachteile einer CLoud Applikation auf
 
 **Vorteile von Cloud-Native-Anwendungen:**
 
-    Skalierbarkeit: Cloud-Native-Anwendungen können problemlos skaliert werden, um mit variablen Workloads umzugehen, da Cloud-Dienste in der Regel elastische Skalierbarkeit bieten.
+Skalierbarkeit: Cloud-Native-Anwendungen können problemlos skaliert werden, um mit variablen Workloads umzugehen, da Cloud-Dienste in der Regel elastische Skalierbarkeit bieten.
 
-    Hohe Verfügbarkeit: Durch die Nutzung von Cloud-Diensten können Anwendungen so konfiguriert werden, dass sie eine hohe Verfügbarkeit gewährleisten, indem sie über mehrere Regionen und Rechenzentren verteilt werden.
+Hohe Verfügbarkeit: Durch die Nutzung von Cloud-Diensten können Anwendungen so konfiguriert werden, dass sie eine hohe Verfügbarkeit gewährleisten, indem sie über mehrere Regionen und Rechenzentren verteilt werden.
 
-    Flexibilität: Cloud-Native-Anwendungen sind flexibel und anpassungsfähig, da sie es Entwicklern ermöglichen, verschiedene Services und Technologien je nach Bedarf zu verwenden, ohne sich auf spezifische Hardware oder Software festlegen zu müssen.
+Flexibilität: Cloud-Native-Anwendungen sind flexibel und anpassungsfähig, da sie es Entwicklern ermöglichen, verschiedene Services und Technologien je nach Bedarf zu verwenden, ohne sich auf spezifische Hardware oder Software festlegen zu müssen.
 
-    Automatisierung: Cloud-Native-Technologien ermöglichen eine umfassende Automatisierung von Bereitstellung, Skalierung, Wartung und anderen Aspekten des Betriebs, was die Effizienz erhöht und menschliche Fehler reduziert.
+Automatisierung: Cloud-Native-Technologien ermöglichen eine umfassende Automatisierung von Bereitstellung, Skalierung, Wartung und anderen Aspekten des Betriebs, was die Effizienz erhöht und menschliche Fehler reduziert.
 
-    BEssere Ausnutzung von Ressourcen, da viele Applikationena auf dem selben physischen Server laufen 
+BEssere Ausnutzung von Ressourcen, da viele Applikationena auf dem selben physischen Server laufen 
 
-    Bei einem hohen peak-to-average-verhältnis sind Cloud-Anwendungen günstiger als on-premise.
-    Dies ist bei periodischen Workloads der Fall. Ein Beispiel hierfür wäre ein Bezahlsystem in einer Kantine. Dieses ist periodisch zu Essenszeiten (9 Uhr, 12 Uhr) ausgelastet.
-    ![Alt text](image-1.png)
+Bei einem hohen peak-to-average-verhältnis sind Cloud-Anwendungen günstiger als on-premise.
+Dies ist bei periodischen Workloads der Fall. Ein Beispiel hierfür wäre ein Bezahlsystem in einer Kantine. Dieses ist periodisch zu Essenszeiten (9 Uhr, 12 Uhr) ausgelastet.
+![Alt text](image-1.png)
 
 **Nachteile von Cloud-Native-Anwendungen:**
 
