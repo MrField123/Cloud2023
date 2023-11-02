@@ -52,24 +52,24 @@ Dies ist bei periodischen Workloads der Fall. Ein Beispiel hierfür wäre ein Be
 
 **Nachteile von Cloud-Native-Anwendungen:**
 
-    Kosten: Cloud-Native-Anwendungen können aufgrund von laufenden Gebühren für Cloud-Ressourcen und -Dienste teurer sein als lokale Lösungen, insbesondere wenn die Skalierung nicht optimiert ist.
+Kosten: Cloud-Native-Anwendungen können aufgrund von laufenden Gebühren für Cloud-Ressourcen und -Dienste teurer sein als lokale Lösungen, insbesondere wenn die Skalierung nicht optimiert ist.
 
-    Komplexität: Die Integration und das Management mehrerer Cloud-Services können komplex sein und erfordern spezifisches Fachwissen, was den Entwicklungs- und Betriebsaufwand erhöht.
+Komplexität: Die Integration und das Management mehrerer Cloud-Services können komplex sein und erfordern spezifisches Fachwissen, was den Entwicklungs- und Betriebsaufwand erhöht.
 
-    Abhängigkeit von Anbietern: Cloud-Native-Anwendungen sind stark von den Funktionen und der Leistung der Cloud-Provider abhängig, was zu potenziellen Einschränkungen und Vendor-Lock-in-Risiken führen kann.
+Abhängigkeit von Anbietern: Cloud-Native-Anwendungen sind stark von den Funktionen und der Leistung der Cloud-Provider abhängig, was zu potenziellen Einschränkungen und Vendor-Lock-in-Risiken führen kann.
 
-    Insiderangriff: Administratoren der Cloud-Provider könnten umfangreichen Zugriff auf Daten haben. Dies birgst vspw. das Risiko der Wirtschaftsspinonage. 
+Insiderangriff: Administratoren der Cloud-Provider könnten umfangreichen Zugriff auf Daten haben. Dies birgst vspw. das Risiko der Wirtschaftsspinonage. 
 
 **Transfer auf unsere Anwendung**
 Die Anwendung um Gutscheine zu erstellen und zu prüfen kann insbesondere durch die Skalierbarkeit in der Cloud profitieren. So können dynamisch Ressourcen hinzugefügt werden, wenn die Anwendung eine stärkere Nutzung erfährt. Dies ist bei dem dargestellten Anwendungsfall der Webapplikation sehr wahrscheinlich der Fall, da bspw. vermehrt Codes gescannt werden, wenn eine Verantaltung stattfindet.
 
 Alternative Realisierungsmöglichkeiten:
 
-    On-Premise-Lösungen: Traditionelle On-Premise-Anwendungen bieten direkte Kontrolle über Hard- und Software, sind jedoch oft teurer in der Wartung und Skalierung.
+On-Premise-Lösungen: Traditionelle On-Premise-Anwendungen bieten direkte Kontrolle über Hard- und Software, sind jedoch oft teurer in der Wartung und Skalierung.
 
-    Hybridlösungen: Hybridlösungen kombinieren lokale Infrastruktur mit Cloud-Services und ermöglichen eine flexible Skalierung und Integration, können aber die Komplexität der Umgebung erhöhen.
+Hybridlösungen: Hybridlösungen kombinieren lokale Infrastruktur mit Cloud-Services und ermöglichen eine flexible Skalierung und Integration, können aber die Komplexität der Umgebung erhöhen.
 
-    Containerisierung: Die Verwendung von Containern, z. B. mit Docker, ermöglicht eine konsistente Bereitstellung und Portabilität von Anwendungen, kann jedoch auch komplexe Orchestrierung erfordern.
+Containerisierung: Die Verwendung von Containern, z. B. mit Docker, ermöglicht eine konsistente Bereitstellung und Portabilität von Anwendungen, kann jedoch auch komplexe Orchestrierung erfordern.
 
 Die Entscheidung für Cloud-Native-Lösungen erfordert eine sorgfältige Abwägung der spezifischen Anforderungen des Projekts sowie der langfristigen Geschäftsziele. Während Cloud-Native-Ansätze Skalierbarkeit und Flexibilität bieten, können Kosten und Komplexität potenzielle Herausforderungen darstellen, die berücksichtigt werden müssen. Es ist ratsam, die Infrastruktur- und Betriebskosten über den gesamten Lebenszyklus hinweg zu berücksichtigen und die Abhängigkeit von einem einzelnen Cloud-Anbieter kritisch zu prüfen, um potenzielle Risiken zu minimieren.
 
@@ -86,12 +86,12 @@ Dieser setzt sich aus folgenden Phasen zusammen:
 
 Um die Datensicherheit zu gewährleisten, sind auch in Cloud-Native-Anwendung verschiedene Maßnahmen erforderlich. 
 Diese können nach folgenden Kategorien gruppiert werden:
- - **Vertraulichkeit: Nur berechtigte Personen sollten Zugriff haben**
- - **Integrität: Schutz vor unberechtigter Manipulation**
- - **Verfügbarkeit: Verfügbarkeit der Daten**
- - **Authentizität: Galubwürdigkeit der Datenherkunft**
- - **Besitz: Besitz der Daten und Entscheidung über Zugang**
- - **Nützlichkeit: Verfügbarkeit der Daten in nutzbarer Form**
+ - **Vertraulichkeit:** Nur berechtigte Personen sollten Zugriff haben
+ - **Integrität:** Schutz vor unberechtigter Manipulation
+ - **Verfügbarkeit:** Verfügbarkeit der Daten
+ - **Authentizität:** Galubwürdigkeit der Datenherkunft
+ - **Besitz:** Besitz der Daten und Entscheidung über Zugang
+ - **Nützlichkeit:** Verfügbarkeit der Daten in nutzbarer Form
 
 Im Folgenden werden gängige Techniken und Konzepte zur Einhaltung der Datensicherheit aufgefüht.
 
@@ -141,12 +141,12 @@ Die DSGVO ist für die implementierte Anwendung relevant, da sie persönliche Da
 
 Aus diesem Grund ist wichtig, dass die Anwendung die oben erörterten Anforderungen erfüllt. Konkret würde dies in der Umsetzung der Anwendung im Kern folgende Punkte umfassen:
 
-    1. Einwilligung: Personen müssen darüber informiert werden, welche Daten gesammelt werden und wie sie verwendet werden. Es ist wichtig, dass Benutzer der Verarbeitung ihrer (personenbezogenen) Daten zustimmen.
+1. Einwilligung: Personen müssen darüber informiert werden, welche Daten gesammelt werden und wie sie verwendet werden. Es ist wichtig, dass Benutzer der Verarbeitung ihrer (personenbezogenen) Daten zustimmen.
 
-    2. Datensicherheit: Die Anwendung muss angemessene Sicherheitsmaßnahmen implementieren, um die Sicherheit und Vertraulichkeit der gespeicherten Daten zu gewährleisten. Dies kann die Verschlüsselung sensibler Daten und die Implementierung von Zugriffsbeschränkungen umfassen.
+2. Datensicherheit: Die Anwendung muss angemessene Sicherheitsmaßnahmen implementieren, um die Sicherheit und Vertraulichkeit der gespeicherten Daten zu gewährleisten. Dies kann die Verschlüsselung sensibler Daten und die Implementierung von Zugriffsbeschränkungen umfassen.
 
-    3. Rechte betroffener Personen: Die DSGVO gewährt den betroffenen Personen verschiedene Rechte, einschließlich des Rechts auf Zugang zu ihren Daten, des Rechts auf Berichtigung falscher Daten, des Rechts auf Löschung und des Rechts auf Datenübertragbarkeit. Die Anwendung sollte Mechanismen bereitstellen, die es den Benutzern ermöglichen, diese Rechte auszuüben.
+3. Rechte betroffener Personen: Die DSGVO gewährt den betroffenen Personen verschiedene Rechte, einschließlich des Rechts auf Zugang zu ihren Daten, des Rechts auf Berichtigung falscher Daten, des Rechts auf Löschung und des Rechts auf Datenübertragbarkeit. Die Anwendung sollte Mechanismen bereitstellen, die es den Benutzern ermöglichen, diese Rechte auszuüben.
 
-    4. Datenminimierung und Speicherbegrenzung: Die Anwendung sollte nur die notwendigen Daten speichern und für den vorgesehenen Zweck verwenden. Es ist wichtig sicherzustellen, dass die Daten nicht länger als nötig gespeichert werden.
+4. Datenminimierung und Speicherbegrenzung: Die Anwendung sollte nur die notwendigen Daten speichern und für den vorgesehenen Zweck verwenden. Es ist wichtig sicherzustellen, dass die Daten nicht länger als nötig gespeichert werden.
 
 Hieraus wird deutlich, dass es empfehlenswert ist, die Pflichten zur Erfüllung der DSGVO bereits vor Implementierung und Hosting einer Cloud-Native Anwendung genau zu kennnen, um diesen gerecht zu werden. 
