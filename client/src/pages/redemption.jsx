@@ -12,15 +12,29 @@ import {
   ListItem
 } from 'framework7-react';
 import { QrReader } from 'react-qr-reader';
+import axios from 'axios';
 
 
 const RedemptionPage = () => {
   const [qrData, setQrData] = useState(null);
 
+  let voucherId = 123; // Replace with the actual voucher ID you want to retrieve
+
   // Function to handle QR code scan results
   const handleScan = (data) => {
     if (data) {
-      setQrData(data);
+     // setQrData(data);
+
+    axios.get(`http://my-super-app-service:8080/getvoucher/${voucherId}`)
+    .then(response => {
+      // Handle the response data here
+      console.log('Received data:', response.data);
+      // Process the received data here
+    })
+    .catch(error => {
+      console.error('There was a problem with the request:', error);
+    });
+    setQrData(data);
     }
   };
 
@@ -52,7 +66,7 @@ const RedemptionPage = () => {
             </div>
           </Block>
         </div>
-        <Block>     
+        <Block>
           <div className='card-wrapper' style={{ width: '500px' }}>
             <Card title='Voucher' raised='true'>
               <CardContent padding={false}>
