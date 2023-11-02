@@ -4,7 +4,7 @@
 ---
 ## Aufgabenteil Prof. Pfisterer
 ### Zielsetzung der Anwendung
-Ziel ist es, eine Webanwendung zu realisieren, mit der QR-Codes als Gutscheine realisiert werden können.
+Ziel ist es, eine Webanwendung zu realisieren, mit der QR-Codes als Gutscheine generiert werden können.
 Hierbei kann ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
  - Typ (bspw. Essen, Trinken etc.)
  - Wert
@@ -28,6 +28,10 @@ https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/21
 Weshalb key value datenbank und keine relationale?
 
 ### Entwurf der Anwendung
+- Beschreibung FR
+- Beschreibung Microservices
+- Beschreibung Datenbank
+  Die Datenbank folgt folgendem Datenbankschema 
 
 ### Screencast Deployment der Anwendung und Demo-Case
 
