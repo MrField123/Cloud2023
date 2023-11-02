@@ -1,7 +1,9 @@
-# Cloud 2023: Maximilian Bröker () und Jonas Acker (1458459)
+# W3M20035 Cloud Infrastructures and Cloud Native Applications
+# Prüfungsleistung Laborbericht
+# Maximilian Bröker () und Jonas Acker (1458459)
 ---
 ## Aufgabenteil Prof. Pfisterer
-### Zielsetzung und Beschreibung der Anwendung
+### Zielsetzung der Anwendung
 Ziel ist es, eine Webanwendung zu realisieren, mit der QR-Codes als Gutscheine realisiert werden können.
 Hierbei kann ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
  - Typ (bspw. Essen, Trinken etc.)
@@ -10,7 +12,7 @@ Hierbei kann ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
 Diese Metadaten, der Code-Inhalt an sich sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank gespeichert werden.
 Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch alle oben genannten Metadaten abgerufen werden. Hierbei wird auch geprft, ob der Code noch gültig ist oder bereits eingelöst wurde. 
 ---
-### Architektur
+### Architektur der Anwendung
 Die Anwendung wird als cloud-native Anwendung realsiert und verfolgt die in der folgenden Abbildung dargestellte Architektur.
 
 ![Alt text](image-2.png)
@@ -24,6 +26,10 @@ Automatisches upscaling und downscaling, anhand welcher Metrik?
 https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/21
 
 Weshalb key value datenbank und keine relationale?
+
+### Entwurf der Anwendung
+
+### Screencast Deployment der Anwendung und Demo-Case
 
 ---
 ## Aufgabenteil Prof. Sturm
