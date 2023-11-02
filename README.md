@@ -74,7 +74,7 @@ Alternative Realisierungsmöglichkeiten:
 Die Entscheidung für Cloud-Native-Lösungen erfordert eine sorgfältige Abwägung der spezifischen Anforderungen des Projekts sowie der langfristigen Geschäftsziele. Während Cloud-Native-Ansätze Skalierbarkeit und Flexibilität bieten, können Kosten und Komplexität potenzielle Herausforderungen darstellen, die berücksichtigt werden müssen. Es ist ratsam, die Infrastruktur- und Betriebskosten über den gesamten Lebenszyklus hinweg zu berücksichtigen und die Abhängigkeit von einem einzelnen Cloud-Anbieter kritisch zu prüfen, um potenzielle Risiken zu minimieren.
 
 #### Wie gewährleisten Sie die Datensicherheit? Bewerten Sie dabei auch die Relevanz der DSGVO für Ihre Anwendung.
-
+##### Datensicherheit
 Es ist esentiell die Datensicherheit im gesamten Lebenszyklus der Daten sicherzustellen,
 Dieser setzt sich aus folgenden Phasen zusammen:
  - Erzeugung
@@ -93,23 +93,60 @@ Diese können nach folgenden Kategorien gruppiert werden:
  - **Besitz: Besitz der Daten und Entscheidung über Zugang**
  - **Nützlichkeit: Verfügbarkeit der Daten in nutzbarer Form**
 
+Im Folgenden werden gängige Techniken und Konzepte zur Einhaltung der Datensicherheit aufgefüht.
+
+Diese Best Practices sind essentiell, um die Datensicherheit in verschiedenen Kontexten zu gewährleisten. Hier ist eine Erläuterung für jede Best Practice:
+
+Castle and Moat (Burg und Burggraben):
+Diese Metapher steht für eine Sicherheitsstrategie, die darauf abzielt, ein robustes Verteidigungssystem um Daten und Ressourcen herum aufzubauen. Die "Burg" repräsentiert sensible Daten und Ressourcen, die durch verschiedene Sicherheitsmaßnahmen geschützt werden, wie Zugriffskontrollen, Verschlüsselung und Identitätsmanagement. Der "Burggraben" symbolisiert eine zusätzliche Schutzschicht, die es Eindringlingen erschwert, Zugang zu sensiblen Bereichen zu erhalten. Dies kann durch Firewalls, Intrusion Detection Systems und andere Sicherheitsmechanismen erreicht werden.
+
+Überwachung des Netzwerkverkehrs:
+Die kontinuierliche Überwachung des Netzwerkverkehrs ist entscheidend, um potenzielle Sicherheitsverletzungen zu erkennen und darauf zu reagieren. Durch die Überwachung des Datenverkehrs können verdächtige Aktivitäten identifiziert, Angriffe erkannt und ungewöhnliche Muster im Datenfluss aufgedeckt werden. Dies ermöglicht es den Sicherheitsteams, proaktiv auf Bedrohungen zu reagieren und geeignete Gegenmaßnahmen zu ergreifen.
+
+Datensicherheit durch Verschlüsselung:
+Die Verschlüsselung von Daten gewährleistet, dass selbst im Falle einer Kompromittierung der Daten der Inhalt für unbefugte Personen unleserlich bleibt. Durch die Verwendung von starken Verschlüsselungsalgorithmen können Daten sowohl während der Speicherung als auch während der Übertragung geschützt werden. Dies ist besonders wichtig, wenn vertrauliche Informationen über öffentliche Netzwerke oder in der Cloud übertragen werden.
+
+Zero Trust:
+Die Zero-Trust-Sicherheitsstrategie basiert auf dem Konzept, dass keine Person oder kein Gerät im Netzwerk standardmäßig vertrauenswürdig ist. Dies bedeutet, dass alle Benutzer, Geräte und Anwendungen einer strengen Überprüfung unterzogen werden, bevor sie Zugriff auf Ressourcen erhalten. Durch die Implementierung von Zugriffsbeschränkungen, Identitätsüberprüfungen und anderen Sicherheitsmaßnahmen wird das Risiko von Sicherheitsverletzungen minimiert.
+
+Security Assessment:
+Sicherheitsbewertungen umfassen regelmäßige Überprüfungen und Analysen der Sicherheitslage, um potenzielle Schwachstellen und Risiken zu identifizieren. Durch Sicherheitsbewertungen können Organisationen proaktiv Sicherheitslücken erkennen und geeignete Maßnahmen ergreifen, um ihre Sicherheitsinfrastruktur zu stärken. Dies beinhaltet oft Penetrationstests, Schwachstellenanalysen und Sicherheitsaudits.
+
+Durch die Implementierung dieser Best Practices können Organisationen ihre Daten und Ressourcen effektiv schützen und die Integrität ihres IT-Ökosystems sicherstellen.
+
+##### Datenschutz-Grundverordnung (DSGVO)
 Das Grundprinzip der DSGVO stellt das Verbot der Verarbeitung von personenbezogenen Daten dar. 
 Müssen personenbezogene Daten verarbeitet werden, setzt dies die Einwilligung des Betroffenen voraus. Selbst mit Einwilligung des betroffenen gelten weiterhin folgende Grundsätze:
-    1. Rechtmäßigkeit, Verarbeitung nach Treu & Glauben und Transparenz: Die Verarbeitung personenbezogener Daten muss rechtmäßig, fair und transparent gegenüber den betroffenen Personen erfolgen.
+1. Rechtmäßigkeit, Verarbeitung nach Treu & Glauben und Transparenz: Die Verarbeitung personenbezogener Daten muss rechtmäßig, fair und transparent gegenüber den betroffenen Personen erfolgen.
 
-    2. Zweckbindung: Personenbezogene Daten dürfen nur für festgelegte, eindeutige und rechtmäßige Zwecke erhoben werden und dürfen nicht in einer mit diesen Zwecken nicht zu vereinbarenden Weise weiterverarbeitet werden.
+2. Zweckbindung: Personenbezogene Daten dürfen nur für festgelegte, eindeutige und rechtmäßige Zwecke erhoben werden und dürfen nicht in einer mit diesen Zwecken nicht zu vereinbarenden Weise weiterverarbeitet werden.
+   
+3. Datenminimierung (auch Minimalprinzip genannt): Die Datenverarbeitung muss auf das für die Zwecke, für die die personenbezogenen Daten verarbeitet werden, notwendige Maß beschränkt sein.
+   
+4.  Richtigkeit: Personenbezogene Daten müssen sachlich richtig und erforderlichenfalls auf dem neuesten Stand gehalten werden. Es sind alle angemessenen Maßnahmen zu treffen, um unrichtige personenbezogene Daten unverzüglich zu berichtigen oder zu löschen.
 
-    3. Datenminimierung (auch Minimalprinzip genannt): Die Datenverarbeitung muss auf das für die Zwecke, für die die personenbezogenen Daten verarbeitet werden, notwendige Maß beschränkt sein.
+5. Speicherbegrenzung: Personenbezogene Daten müssen in einer Form gespeichert werden, die die Identifizierung der betroffenen Personen nur so lange ermöglicht, wie es für die Zwecke, für die sie verarbeitet werden, erforderlich ist.
 
-    4. Richtigkeit: Personenbezogene Daten müssen sachlich richtig und erforderlichenfalls auf dem neuesten Stand gehalten werden. Es sind alle angemessenen Maßnahmen zu treffen, um unrichtige personenbezogene Daten unverzüglich zu berichtigen oder zu löschen.
-
-    5. Speicherbegrenzung: Personenbezogene Daten müssen in einer Form gespeichert werden, die die Identifizierung der betroffenen Personen nur so lange ermöglicht, wie es für die Zwecke, für die sie verarbeitet werden, erforderlich ist.
-
-    6. Integrität und Vertraulichkeit: Personenbezogene Daten müssen so verarbeitet werden, dass eine angemessene Sicherheit gewährleistet ist, einschließlich Schutz vor unbefugter oder unrechtmäßiger Verarbeitung und vor unbeabsichtigtem Verlust, unbeabsichtigter Zerstörung oder unbeabsichtigter Schädigung, durch geeignete technische oder organisatorische Maßnahmen.
+6. Integrität und Vertraulichkeit: Personenbezogene Daten müssen so verarbeitet werden, dass eine angemessene Sicherheit gewährleistet ist, einschließlich Schutz vor unbefugter oder unrechtmäßiger Verarbeitung und vor unbeabsichtigtem Verlust, unbeabsichtigter Zerstörung oder unbeabsichtigter Schädigung, durch geeignete technische oder organisatorische Maßnahmen.
 
  Der Verantwortliche der Datenspeicherung ist für die Einhaltung dieser Grundsätze verantwortlich und muss dies nachweisen können (Rechenschaftspflicht).
 
- Werden personenbezognene in einer Cloud gespeichert, so muss ein Auftragdatenvereinbarungsvertrag geschlissenw erden, da die Daten dann bei Dritten (dem Cloud-Anbieter) gespeichert werden. Des Weiteren ist darauf zu achten, dass das Spannungsfeld zwischen global verteilen Ressourcen von Cloud-Anbietern und lokalen Datenschutzgesetzen beachtet wird. 
+ Werden personenbezognene in einer Cloud gespeichert, so muss ein Auftragdatenvereinbarungsvertrag geschlossen werden, da die Daten dann bei Dritten (dem Cloud-Anbieter) gespeichert werden. Des Weiteren ist darauf zu achten, dass das Spannungsfeld zwischen global verteilen Ressourcen von Cloud-Anbietern und lokalen Datenschutzgesetzen beachtet wird. Manche Cloud-Anbieter teilen Ihre Cloud aus diesem Grund in Zonen ein, aus denen selektiert werden kann. So kann bspw. sichergestellt werden, dass eine Anwendung und deren Daten lediglich in Deutschland betrieben bzw. gespeichert werden. 
 
 **Transfer auf unsere Anwendung**
+**Datensicherheit**
 
+**DSGVO**
+Die DSGVO ist für die implementierte Anwendung relevant, da sie persönliche Daten verarbeitet und speichert. In diesem Fall werden presonenbezogene Daten mit den Meadaten zu jedem Gutschein gespeichert. 
+
+Aus diesem Grund ist wichtig, dass die Anwendung die oben erörterten Anforderungen erfüllt. Konkret würde dies in der Umsetzung der Anwendung im Kern folgende Punkte umfassen:
+
+    1. Einwilligung: Personen müssen darüber informiert werden, welche Daten gesammelt werden und wie sie verwendet werden. Es ist wichtig, dass Benutzer der Verarbeitung ihrer (personenbezogenen) Daten zustimmen.
+
+    2. Datensicherheit: Die Anwendung muss angemessene Sicherheitsmaßnahmen implementieren, um die Sicherheit und Vertraulichkeit der gespeicherten Daten zu gewährleisten. Dies kann die Verschlüsselung sensibler Daten und die Implementierung von Zugriffsbeschränkungen umfassen.
+
+    3. Rechte betroffener Personen: Die DSGVO gewährt den betroffenen Personen verschiedene Rechte, einschließlich des Rechts auf Zugang zu ihren Daten, des Rechts auf Berichtigung falscher Daten, des Rechts auf Löschung und des Rechts auf Datenübertragbarkeit. Die Anwendung sollte Mechanismen bereitstellen, die es den Benutzern ermöglichen, diese Rechte auszuüben.
+
+    4. Datenminimierung und Speicherbegrenzung: Die Anwendung sollte nur die notwendigen Daten speichern und für den vorgesehenen Zweck verwenden. Es ist wichtig sicherzustellen, dass die Daten nicht länger als nötig gespeichert werden.
+
+Hieraus wird deutlich, dass es empfehlenswert ist, die Pflichten zur Erfüllung der DSGVO bereits vor Implementierung und Hosting einer Cloud-Native Anwendung genau zu kennnen, um diesen gerecht zu werden. 
