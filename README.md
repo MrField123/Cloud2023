@@ -1,6 +1,6 @@
-<center> # W3M20035 Cloud Infrastructures and Cloud Native Applications
+# W3M20035 Cloud Infrastructures and Cloud Native Applications
 # Prüfungsleistung Laborbericht
-#### Maximilian Bröker (5800049) und Jonas Acker (1458459) </center>
+#### Maximilian Bröker (5800049) und Jonas Acker (1458459) 
 ---
 ## Aufgabenteil Prof. Pfisterer
 ### Zielsetzung der Anwendung
