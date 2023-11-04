@@ -112,7 +112,7 @@ Dieser setzt sich aus folgenden Phasen zusammen:<br>
  - Löschung
 
 Um die Datensicherheit zu gewährleisten, sind auch in Cloud-Native-Anwendung verschiedene Maßnahmen erforderlich. 
-Diese können nach folgenden Kategorien gruppiert werden:
+Die folgende Auflistung orientiert sich an der verbreiteten "Pakerian Hexad" (nach Donn B, Parker, 1998), welche sechs Attribute der IT-Sicherheit umfasst:
  - **Vertraulichkeit:** Nur berechtigte Personen sollten Zugriff haben
  - **Integrität:** Schutz vor unberechtigter Manipulation
  - **Verfügbarkeit:** Verfügbarkeit der Daten
@@ -120,22 +120,22 @@ Diese können nach folgenden Kategorien gruppiert werden:
  - **Besitz:** Besitz der Daten und Entscheidung über Zugang
  - **Nützlichkeit:** Verfügbarkeit der Daten in nutzbarer Form
 
-<br>Im Folgenden werden gängige Techniken und Konzepte zur Einhaltung der Datensicherheit aufgeführt und erläutert.
+Im Folgenden werden gängige Techniken und Konzepte zur Einhaltung der Datensicherheit aufgeführt und erläutert.
 Diese Best Practices sind essentiell, um die Datensicherheit in verschiedenen Kontexten zu gewährleisten. 
 
 **Castle and Moat (Burg und Burggraben):** <br>
 Diese Metapher steht für eine Sicherheitsstrategie, die darauf abzielt, ein robustes Verteidigungssystem um Daten und Ressourcen herum aufzubauen. Die "Burg" repräsentiert sensible Daten und Ressourcen, die durch verschiedene Sicherheitsmaßnahmen geschützt werden, wie Zugriffskontrollen, Verschlüsselung und Identitätsmanagement. Der "Burggraben" symbolisiert eine zusätzliche Schutzschicht, die es Eindringlingen erschwert, Zugang zu sensiblen Bereichen zu erhalten. Dies kann durch Firewalls, Intrusion Detection Systems und andere Sicherheitsmechanismen erreicht werden.
 
-Überwachung des Netzwerkverkehrs:<br>
+**Überwachung des Netzwerkverkehrs:**<br>
 Die kontinuierliche Überwachung des Netzwerkverkehrs ist entscheidend, um potenzielle Sicherheitsverletzungen zu erkennen und darauf zu reagieren. Durch die Überwachung des Datenverkehrs können verdächtige Aktivitäten identifiziert, Angriffe erkannt und ungewöhnliche Muster im Datenfluss aufgedeckt werden. Dies ermöglicht es den Sicherheitsteams, proaktiv auf Bedrohungen zu reagieren und geeignete Gegenmaßnahmen zu ergreifen.
 
-Datensicherheit durch Verschlüsselung:<br>
-Die Verschlüsselung von Daten gewährleistet, dass selbst im Falle einer Kompromittierung der Daten der Inhalt für unbefugte Personen unleserlich bleibt. Durch die Verwendung von starken Verschlüsselungsalgorithmen können Daten sowohl während der Speicherung als auch während der Übertragung geschützt werden. Dies ist besonders wichtig, wenn vertrauliche Informationen über öffentliche Netzwerke oder in der Cloud übertragen werden.
+**Datensicherheit durch Verschlüsselung:**<br>
+Die Verschlüsselung von Daten gewährleistet, dass selbst im Falle einer Kompromittierung des Systems der Inhalt für unbefugte Personen unleserlich bleibt. Durch die Verwendung von starken Verschlüsselungsalgorithmen können Daten sowohl während der Speicherung als auch während der Übertragung geschützt werden. Dies ist besonders wichtig, wenn vertrauliche Informationen über öffentliche Netzwerke oder in der Cloud übertragen werden.
 
-Zero Trust:<br>
+**Zero Trust:**<br>
 Die Zero-Trust-Sicherheitsstrategie basiert auf dem Konzept, dass keine Person oder kein Gerät im Netzwerk standardmäßig vertrauenswürdig ist. Dies bedeutet, dass alle Benutzer, Geräte und Anwendungen einer strengen Überprüfung unterzogen werden, bevor sie Zugriff auf Ressourcen erhalten. Durch die Implementierung von Zugriffsbeschränkungen, Identitätsüberprüfungen und anderen Sicherheitsmaßnahmen wird das Risiko von Sicherheitsverletzungen minimiert.
 
-Security Assessment:<br>
+**Security Assessment:**<br>
 Sicherheitsbewertungen umfassen regelmäßige Überprüfungen und Analysen der Sicherheitslage, um potenzielle Schwachstellen und Risiken zu identifizieren. Durch Sicherheitsbewertungen können Organisationen proaktiv Sicherheitslücken erkennen und geeignete Maßnahmen ergreifen, um ihre Sicherheitsinfrastruktur zu stärken. Dies beinhaltet oft Penetrationstests, Schwachstellenanalysen und Sicherheitsaudits.
 
 
