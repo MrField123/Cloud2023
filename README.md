@@ -13,6 +13,10 @@ Hierbei kann ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
 <br>
 Diese Metadaten, Inhalt des QR-Codes (Zufalls-String) sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank gespeichert werden.
 Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch alle oben genannten Metadaten abgerufen werden. Hierbei wird auch geprüft, ob der Code noch gültig ist oder bereits eingelöst wurde. Ist er noch nicht eingelöst, kann er entsprechend als eingelöst aktualisiert werden. 
+<br>
+Um die Zielsetzung zu erreichen, muss die Datenbank folgendes Datenbankschema realisieren.
+
+![Alt text](image-4.png)
 
 ---
 ### Architektur und Entwurf der Anwendung
@@ -37,6 +41,9 @@ Die im Rahmen dieser Anwendung genutzte Datenbank MariaDB unterstützt ein Maste
 Neben der Skalierung nach dem Maser-Slave Prinzip können auch Caching-Mechanismen eingesetzt werden, um die Last auf der Datenbank zu reduzieren. Die Verwendung von Caching-Technologien wie Memcached oder Redis kann die Leistung verbessern, indem häufig abgerufene Daten zwischengespeichert werden, um die Anzahl der Datenbankabfragen zu reduzieren.
 
 
+
+### Herausforderungen  
+Da der Entwurf der Anwendung vorsieht, Frontend und Backend einerseits logisch voreinenader zu trennen und andererseits auf Basis verschiedener Technologien zu implementieren, hat sich die Kommunikation zwischen Backend und Frontend als größte Herausforderung dargestellt. So war es herausfordernd, die Netzwerkkommunikation zwischen den Pods für Frontend und Backend herzustellen.
 
 ### Screencast Deployment der Anwendung und Demo-Case
 [![IMAGE ALT TEXT HERE](image-3.png)](https://www.youtube.com/watch?v=1lhZxsMKfEw)
