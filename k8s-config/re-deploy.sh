@@ -5,7 +5,7 @@ eval $(minikube docker-env)
 cd ../client
 docker build -t voucher-hub-app .
 
-cd ../a_server
+cd ../services
 docker build -t my-super-web-app .
 
 cd ../k8s-config
@@ -30,6 +30,7 @@ kubectl apply -f k8s-mariadb-service.yaml
 kubectl apply -f app-deployment-minikube.yaml
 kubectl apply -f microservice-service.yaml
 kubectl apply -f ingress.yaml
+kubectl apply -f pv.yaml
 
 
 #kubectl run -i --tty --rm debug --image=curlimages/curl --restart=Never

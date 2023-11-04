@@ -16,5 +16,12 @@ spec:
                 name: my-super-app-service
                 port:
                   number: 8080
+          - path: /app
+            pathType: Prefix
+            backend:
+              service:
+                name: voucher-hub-service
+                port:
+                  number: 5173
 
      
