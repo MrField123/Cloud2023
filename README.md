@@ -10,8 +10,8 @@ Hierbei kann ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
  - Typ (bspw. Essen, Trinken etc.)
  - Wert
  - Name
-<br> Diese Metadaten, der Code-Inhalt an sich sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank gespeichert werden.
-Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch alle oben genannten Metadaten abgerufen werden. Hierbei wird auch geprft, ob der Code noch gültig ist oder bereits eingelöst wurde. Ist er noch nicht eingelöst, kann er entsprechend als eingelöst geupdatet werden. 
+<br> <br> Diese Metadaten, Inhalt des QR-Codes (Zufalls-String) sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank gespeichert werden.
+Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch alle oben genannten Metadaten abgerufen werden. Hierbei wird auch geprüft, ob der Code noch gültig ist oder bereits eingelöst wurde. Ist er noch nicht eingelöst, kann er entsprechend als eingelöst aktualisiert werden. 
 
 ---
 ### Architektur und Entwurf der Anwendung
@@ -27,26 +27,21 @@ Es wurde mit dem Open-SOurce-Framework "Framework7" und React realisiert. Framew
 **Services**
 Das Backend in Form von zwei Services basiert auf Node.js als Laufzeitumgebung. Somit erfolgt die Implementierung in JavaScript. Um grundlegende Funktionen nicht selbst programmieren zu müssen, wird das Framework Express für die Erstellung der Services verwendet. 
 
-Da mehr lesende als schreibende Zugriffe auf die Applikation erwartet werden, wird lesender und schreibender Service bewusste getrennt, um eine möglichst ressourceneffiziente Skalierung zu ermöglichen. DIes folgt somit dem Architekturmuster von Microservices, bei dem Anwendungen in kleinere, unabhängige und lose gekoppelte Dienste aufgeteilt werden, die jeweils spezifische Funktionen erfüllen. Diese Dienste können unabhängig voneinander entwickelt, bereitgestellt und skaliert werden. Eine mögliche Metrik für die Skalierung der Services wäre hier die Auslastung der CPU. 
+Da mehr lesende als schreibende Zugriffe auf die Applikation erwartet werden, wird lesender und schreibender Service bewusste getrennt, um eine möglichst ressourceneffiziente Skalierung zu ermöglichen. Dies folgt somit dem Architekturmuster von Microservices, bei dem Anwendungen in kleinere, unabhängige und lose gekoppelte Dienste aufgeteilt werden, die jeweils spezifische Funktionen erfüllen. Diese Dienste können unabhängig voneinander entwickelt, bereitgestellt und skaliert werden. Eine mögliche Metrik für die Skalierung der Services wäre die Auslastung der CPU. 
 
 **Datenbank**
 Bei der Skalierung der Anwendung ist es von Bedeutung, auch die Datenbank mitzubedenken. Da bei der Anwendung meh lesende als schreibende Zugriffe erwartet werden, kann das Prinzip der Master-Slave-Replikation angewendet werden. 
 Bei der Master-Slave-Replikation handelt es sich um einen Prozess in einer Datenbankumgebung, bei dem Datenbanktransaktionen (Änderungen an Daten) von einem Master-Datenbankserver auf einen oder mehrere Slave-Server repliziert werden. Dieses Verfahren bietet die Möglichkeit, Leselast von einem Master-Server auf Slave-Server zu verteilen und gleichzeitig Redundanz und Fehlertoleranz zu gewährleisten.
+Die im Rahmen dieser Anwendung genutzte Datenbank MariaDB unterstützt ein Master-Slave-Prinzip, wenngleich dieses durch die beschränkte Bearbeitungszeit nicht implementiert wurde. 
 Neben der Skalierung nach dem Maser-Slave Prinzip können auch Caching-Mechanismen eingesetzt werden, um die Last auf der Datenbank zu reduzieren. Die Verwendung von Caching-Technologien wie Memcached oder Redis kann die Leistung verbessern, indem häufig abgerufene Daten zwischengespeichert werden, um die Anzahl der Datenbankabfragen zu reduzieren.
 
-Weshalb relationale und keine key vaue db?
 
-### Entwurf der Anwendung
-- Beschreibung FR
-- Beschreibung Microservices
-- Beschreibung Datenbank
-  Die Datenbank folgt folgendem Datenbankschema 
 
 ### Screencast Deployment der Anwendung und Demo-Case
-
+[![IMAGE ALT TEXT HERE](image-3.png)](https://www.youtube.com/watch?v=1lhZxsMKfEw)
 ---
 ## Aufgabenteil Prof. Sturm
-Im Folgenden werden auf Basis der im Aufgabenteil von Prof. Pfisterer realisierten Webapplikation die Aufgabenstellungen von Prof. Sturm beantwortet.
+Im Folgenden werden auf Basis der im Aufgabenteil von Prof. Pfisterer realisierten WebappApplikation die Aufgabenstellungen von Prof. Sturm beantwortet.
 
 #### Welche Vorteile und Nachteile ergeben sich für Ihre Anwendung aus der Realisierung als Cloud-Native? Zeigen Sie dabei auch alternative Realisierungsmöglichkeiten auf, stellen Sie diese der Cloud-Native Lösung gegenüber und erörtern Sie kritisch.
 
