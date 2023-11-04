@@ -1,5 +1,5 @@
-# W3M20035 Cloud Infrastructures and Cloud Native Applications
-# Prüfungsleistung Laborbericht
+## W3M20035 Cloud Infrastructures and Cloud Native Applications
+## Prüfungsleistung Laborbericht
 #### Maximilian Bröker (5800049) und Jonas Acker (1458459) 
 ---
 ## Aufgabenteil Prof. Pfisterer
@@ -10,6 +10,7 @@ Hierbei kann ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
  - Typ (bspw. Essen, Trinken etc.)
  - Wert
  - Name
+
 Diese Metadaten, der Code-Inhalt an sich sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank gespeichert werden.
 Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch alle oben genannten Metadaten abgerufen werden. Hierbei wird auch geprft, ob der Code noch gültig ist oder bereits eingelöst wurde. Ist er noch nicht eingelöst, kann er entsprechend als eingelöst geupdatet werden. 
 ---
