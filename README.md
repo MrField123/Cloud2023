@@ -1,31 +1,39 @@
-# W3M20035 Cloud Infrastructures and Cloud Native Applications
+<center> # W3M20035 Cloud Infrastructures and Cloud Native Applications
 # Prüfungsleistung Laborbericht
-# Maximilian Bröker () und Jonas Acker (1458459)
+#### Maximilian Bröker (5800049) und Jonas Acker (1458459) </center>
 ---
 ## Aufgabenteil Prof. Pfisterer
 ### Zielsetzung der Anwendung
 Ziel ist es, eine Webanwendung zu realisieren, mit der QR-Codes als Gutscheine generiert werden können.
+Diese Gutscheine sollen anschließend auf den Client heruntergeladen werden können.
 Hierbei kann ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
  - Typ (bspw. Essen, Trinken etc.)
  - Wert
  - Name
 Diese Metadaten, der Code-Inhalt an sich sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank gespeichert werden.
-Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch alle oben genannten Metadaten abgerufen werden. Hierbei wird auch geprft, ob der Code noch gültig ist oder bereits eingelöst wurde. 
+Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch alle oben genannten Metadaten abgerufen werden. Hierbei wird auch geprft, ob der Code noch gültig ist oder bereits eingelöst wurde. Ist er noch nicht eingelöst, kann er entsprechend als eingelöst geupdatet werden. 
 ---
-### Architektur der Anwendung
-Die Anwendung wird als cloud-native Anwendung realsiert und verfolgt die in der folgenden Abbildung dargestellte Architektur.
+### Architektur und Entwurf der Anwendung
+Die Anwendung wird als cloud-native Anwendung realisiert und verfolgt die in der folgenden Abbildung dargestellte Architektur.
 
 ![Alt text](image-2.png)
 
-Da mehr lesende als schreibende Zugriffe auf die Applikation erwartet werden, wird lesender und schreibender Service bewusste getrennt, um eine möglichst ressourceneffiziente Skalierung zu ermöglichen.
 
+**Frontend**
+Das Frontend enthält insgesamt zwei Ansichten. Eine Ansicht zum erstellen von QR-Codes und eine zweite Ansicht zum scannen dieser.
+Es wurde mit dem Open-SOurce-Framework "Framework7" und React realisiert. Framework7 bietet den Vorteil bereits einen Baukasten von UI-Komponenten und -Layouts, um interaktive und ansprechende Anwendungen zu erstellen, zu bieten.
 
+**Services**
+Das Backend in Form von zwei Services basiert auf Node.js als Laufzeitumgebung. Somit erfolgt die Implementierung in JavaScript. Um grundlegende Funktionen nicht selbst programmieren zu müssen, wird das Framework Express für die Erstellung der Services verwendet. 
 
-Skalierung der DB: Master Slave (lesend, da mehr lesende als schreibende Zugriffe)
-Automatisches upscaling und downscaling, anhand welcher Metrik?
-https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/21
+Da mehr lesende als schreibende Zugriffe auf die Applikation erwartet werden, wird lesender und schreibender Service bewusste getrennt, um eine möglichst ressourceneffiziente Skalierung zu ermöglichen. DIes folgt somit dem Architekturmuster von Microservices, bei dem Anwendungen in kleinere, unabhängige und lose gekoppelte Dienste aufgeteilt werden, die jeweils spezifische Funktionen erfüllen. Diese Dienste können unabhängig voneinander entwickelt, bereitgestellt und skaliert werden. Eine mögliche Metrik für die Skalierung der Services wäre hier die Auslastung der CPU. 
 
-Weshalb key value datenbank und keine relationale?
+**Datenbank**
+Bei der Skalierung der Anwendung ist es von Bedeutung, auch die Datenbank mitzubedenken. Da bei der Anwendung meh lesende als schreibende Zugriffe erwartet werden, kann das Prinzip der Master-Slave-Replikation angewendet werden. 
+Bei der Master-Slave-Replikation handelt es sich um einen Prozess in einer Datenbankumgebung, bei dem Datenbanktransaktionen (Änderungen an Daten) von einem Master-Datenbankserver auf einen oder mehrere Slave-Server repliziert werden. Dieses Verfahren bietet die Möglichkeit, Leselast von einem Master-Server auf Slave-Server zu verteilen und gleichzeitig Redundanz und Fehlertoleranz zu gewährleisten.
+Neben der Skalierung nach dem Maser-Slave Prinzip können auch Caching-Mechanismen eingesetzt werden, um die Last auf der Datenbank zu reduzieren. Die Verwendung von Caching-Technologien wie Memcached oder Redis kann die Leistung verbessern, indem häufig abgerufene Daten zwischengespeichert werden, um die Anzahl der Datenbankabfragen zu reduzieren.
+
+Weshalb relationale und keine key vaue db?
 
 ### Entwurf der Anwendung
 - Beschreibung FR
