@@ -16,13 +16,13 @@ Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch a
 <br>
 Um die Zielsetzung zu erreichen, muss die Datenbank folgendes Datenbankschema realisieren.
 
-![Alt text](image-4.png)
+![Alt text](assets/image-4.png)
 
 ---
 ### Architektur und Entwurf der Anwendung
 Die Anwendung wird als cloud-native Anwendung realisiert und verfolgt die in der folgenden Abbildung dargestellte Architektur.
 
-![Alt text](image-2.png)
+![Alt text](assets/image-2.png)
 
 
 **Frontend**
@@ -44,7 +44,7 @@ Neben der Skalierung nach dem Maser-Slave Prinzip können auch Caching-Mechanism
 Da der Entwurf der Anwendung vorsieht, Frontend und Backend einerseits logisch voreinenader zu trennen und andererseits auf Basis verschiedener Technologien zu implementieren, hat sich die Kommunikation zwischen Backend und Frontend als größte Herausforderung dargestellt. So war es herausfordernd, die Netzwerkkommunikation zwischen den Pods für Frontend und Backend aufzubauen.
 
 ### Screencast Deployment der Anwendung und Demo-Case
-[![IMAGE ALT TEXT HERE](image-3.png)](https://www.youtube.com/watch?v=1lhZxsMKfEw)
+[![IMAGE ALT TEXT HERE](assets/image-3.png)](https://www.youtube.com/watch?v=1lhZxsMKfEw)
 ---
 ## Aufgabenteil Prof. Sturm
 Im Folgenden werden auf Basis der im Aufgabenteil von Prof. Pfisterer realisierten Anwendung die Aufgabenstellungen von Prof. Sturm beantwortet.
@@ -71,7 +71,7 @@ Automatisierung:
 Abschließend bleib bei den Vorteilen von Cloud-Anwendungen festzuhalten, dass diese bei einem hohen peak-to-average-Verhältnis günstiger als on-premise Lösungen sind.
 Dies ist bei periodischen Workloads der Fall. Ein Beispiel hierfür wäre ein Bezahlsystem in einer Kantine. Dieses ist periodisch zu Stoßzeiten (z. B. 9 - 9:30 Uhr und 12 - 12:30 Uhr) stark ausgelastet, außerhalb von diesen jedoch kaum.
 <br><br>
-![Alt text](image-1.png)
+![Alt text](assets/image-1.png)
 Hierbei ist darauf zu achten, dass ein geeignetes Preismodell des Cloud-Anbieters gewählt wird, welches entsprechend dem Workload abrechnet. 
 
 **Nachteile von Cloud-Native-Anwendungen:**
