@@ -123,7 +123,7 @@ Diese können nach folgenden Kategorien gruppiert werden:
 <br>Im Folgenden werden gängige Techniken und Konzepte zur Einhaltung der Datensicherheit aufgeführt und erläutert.
 Diese Best Practices sind essentiell, um die Datensicherheit in verschiedenen Kontexten zu gewährleisten. 
 
-**Castle and Moat (Burg und Burggraben):**
+**Castle and Moat (Burg und Burggraben):** <br>
 Diese Metapher steht für eine Sicherheitsstrategie, die darauf abzielt, ein robustes Verteidigungssystem um Daten und Ressourcen herum aufzubauen. Die "Burg" repräsentiert sensible Daten und Ressourcen, die durch verschiedene Sicherheitsmaßnahmen geschützt werden, wie Zugriffskontrollen, Verschlüsselung und Identitätsmanagement. Der "Burggraben" symbolisiert eine zusätzliche Schutzschicht, die es Eindringlingen erschwert, Zugang zu sensiblen Bereichen zu erhalten. Dies kann durch Firewalls, Intrusion Detection Systems und andere Sicherheitsmechanismen erreicht werden.
 
 Überwachung des Netzwerkverkehrs:<br>
