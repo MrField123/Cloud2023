@@ -8,6 +8,7 @@ const mariadb = require('mariadb')
 const MemcachePlus = require('memcache-plus')
 const inefficient = require('inefficient');
 const { parse } = require('path');
+const cors = require("cors");
 
 
 
@@ -67,6 +68,14 @@ function send_response(response, dbResult) {
 	response.send(JSON.stringify(dbResult));
 }
 
+//CORS
+app.use(cors({
+    origin: 'http://localhost:8080',
+    methods: 'GET,POST',
+    allowedHeaders: 'Content-Type,Authorization',
+    optionsSuccessStatus: 200
+}))
+
 // Add prometheus metrics middleware
 app.use(prometheusBundle({
 	includePath: true,
@@ -102,6 +111,8 @@ app.getAsync('/getvoucher/:id', async function (request, response) {
 		}
 	//}
 })
+
+
 
 // Set port to start the app on
 app.set('port', (process.env.PORT || 8080))

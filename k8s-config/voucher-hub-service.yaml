@@ -8,5 +8,5 @@ spec:
     app: voucher-hub
   ports:
     - protocol: TCP
-      port: 8080
+      port: 5173
       targetPort: 5173
