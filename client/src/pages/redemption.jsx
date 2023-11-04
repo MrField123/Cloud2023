@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Page,
   Navbar,
@@ -9,10 +9,12 @@ import {
   CardContent,
   CardFooter,
   List,
-  ListItem
+  ListItem,
+  Button
 } from 'framework7-react';
 import { QrReader } from 'react-qr-reader';
 import axios from 'axios';
+import dns from 'dns.js';
 
 
 const RedemptionPage = () => {
@@ -20,21 +22,34 @@ const RedemptionPage = () => {
 
   let voucherId = 123; // Replace with the actual voucher ID you want to retrieve
 
-  // Function to handle QR code scan results
-  const handleScan = (data) => {
-    if (data) {
-     // setQrData(data);
+  const sendRequest = () => {
+   axios
+    .get(`http://127.0.0.1/getvoucher/1`)
 
-    axios.get(`http://my-super-app-service:8080/getvoucher/${voucherId}`)
     .then(response => {
-      // Handle the response data here
       console.log('Received data:', response.data);
       // Process the received data here
     })
     .catch(error => {
       console.error('There was a problem with the request:', error);
     });
-    setQrData(data);
+  }
+
+
+  // Function to handle QR code scan results
+  const handleScan = (data) => {
+    if (data) {
+
+      axios.get(`http://my-super-app-service:8080/getvoucher/${voucherId}`)
+      .then(response => {
+        console.log('Received data:', response.data);
+        // Process the received data here
+      })
+      .catch(error => {
+        console.error('There was a problem with the request:', error);
+      });
+
+      setQrData(data);
     }
   };
 
@@ -76,6 +91,9 @@ const RedemptionPage = () => {
                   <ListItem title="-" subtitle="Name" text="" />
                   <ListItem title="-" subtitle="Status" text="" />
                 </List>
+                <Button onClick={sendRequest} style={{ width: "180px" }}>
+                  Test
+                </Button>
               </CardContent>
               <CardFooter>
                 <span>{qrData ? qrData.text : ""}</span>
