@@ -1,0 +1,12 @@
+# Service
+kind: Service
+apiVersion: v1
+metadata:
+  name: read-service-service
+spec:
+  selector:
+    app: readservice
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

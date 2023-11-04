@@ -3,5 +3,5 @@ EXPOSE 8080
 WORKDIR /app
 COPY package.json /app/
 RUN npm install
-COPY server.js /app/
-CMD node /app/server.js
+COPY write_service.js /app/
+CMD node /app/write_service.js

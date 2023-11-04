@@ -22,7 +22,7 @@ spec:
           args:
             - "-o"
             - "/tmp/data/init.sql" # we are saving downloaded file as init.sql in /tmp/data directory
-            - "https://raw.githubusercontent.com/MrField123/Cloud2023/main/services/init.sql"
+            - "https://raw.githubusercontent.com/MrField123/Cloud2023/main/database/init.sql"
           volumeMounts:
             - name: data-volume
               mountPath: /tmp/data

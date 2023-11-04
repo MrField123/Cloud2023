@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: read-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readservice
+  template:
+    metadata:
+      labels:
+        app: readservice
+    spec:
+      containers:
+        - name: readservice
+          image: read-service
+          imagePullPolicy: Never # Uses Minikubes Docker image repo (minikube only)
+          ports:
+            - containerPort: 8080

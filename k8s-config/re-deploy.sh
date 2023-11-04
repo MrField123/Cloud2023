@@ -5,30 +5,31 @@ eval $(minikube docker-env)
 cd ../client
 docker build -t voucher-hub-app .
 
-cd ../services
-docker build -t my-super-web-app .
+cd ../services/write
+docker build -t write-service .
 
-cd ../k8s-config
+cd ../read
+docker build -t read-service .
+
+cd ../../k8s-config
 
 # Delete deployments
-kubectl delete deployment/voucher-hub-deployment
-kubectl delete deployment/my-super-app-deployment
-kubectl delete deployment/mariadb-deployment
+kubectl delete deployment --all
 
 # Delete services
-kubectl delete svc/voucher-hub-service
-kubectl delete svc/my-app-mariadb-service
-kubectl delete svc/my-super-app-service
+kubectl delete svc --all
 
-kubectl delete ingress my-super-app-ingress
+kubectl delete ingress --all
 
 # Create Kubernetes resources
 kubectl apply -f app-deployment-frontend.yaml
 kubectl apply -f voucher-hub-service.yaml
 kubectl apply -f mariadb-deployment.yaml
 kubectl apply -f k8s-mariadb-service.yaml
-kubectl apply -f app-deployment-minikube.yaml
-kubectl apply -f microservice-service.yaml
+kubectl apply -f write-service-deployment.yaml
+kubectl apply -f read-service-deployment.yaml
+kubectl apply -f write-service-service.yaml
+kubectl apply -f read-service-service.yaml
 kubectl apply -f ingress.yaml
 kubectl apply -f pv.yaml
 

@@ -13,9 +13,16 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: my-super-app-service
+                name: read-service-service
                 port:
                   number: 8080
+          - path: /write
+            pathType: Prefix
+            backend:
+              service:
+                name: write-service-service
+                port:
+                  number: 1234
           - path: /app
             pathType: Prefix
             backend:
