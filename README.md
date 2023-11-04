@@ -165,10 +165,10 @@ Werden personenbezogene in einer Cloud gespeichert, so muss ein Auftragsdatenver
 
 ### Transfer auf unsere Anwendung
 
-**Datensicherheit**
-<br>
+**Datensicherheit**<br>
+In der vorliegenden Anwendung wurden keine expliziten Sicherheitsvorkehrungen getroffen, da es nie Ziel war die Anwendung bei einem Cloud-Provider zu hosten und aus dem Internet verfügbar zu machen. Bei einer möglichen Veröffentlichung der Anwendung sind alle oben beschriebene Aspekte der Datensicherheit zu bedenken und entsprechende Mechanismen zu implementieren. 
 
-**DSGVO**
+**DSGVO**<br>
 Die DSGVO ist für die implementierte Anwendung relevant, da sie persönliche Daten verarbeitet und speichert. In diesem Fall werden personenbezogene Daten mit den Metadaten zu jedem Gutschein gespeichert. 
 
 Aus diesem Grund ist wichtig, dass die Anwendung die oben erörterten Anforderungen erfüllt. Konkret würde dies in der Umsetzung der Anwendung im Kern folgende Punkte umfassen:
