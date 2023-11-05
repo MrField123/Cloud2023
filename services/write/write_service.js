@@ -82,12 +82,6 @@ app.use(prometheusBundle({
 	customLabels: { project_name: 'my-express-app' },
 }))
 
-// Redirect / to person with ID l.mlb.com - p.7491
-app.get('/', function (request, response) {
-	response.writeHead(302, { 'Location': 'getvoucher/1' })
-	response.end()
-})
-
 app.post('/postvoucher', (req, res) => {
 	app.use(express.json())
 	let v = res.json(req.body);
@@ -100,7 +94,8 @@ app.post('/postvoucher', (req, res) => {
   });
 
 // Get data about a single person
-app.getAsync('/write/getvoucher/:id', async function (request, response) {
+app.getAsync('/getvoucher/:id', async function (request, response) {
+	console.log('Route was hit for /getvoucher/:id');
 	let voucherid = request.params["id"]
 		let data = await getFromDatabase(voucherid)
 		if (data) {
@@ -110,8 +105,18 @@ app.getAsync('/write/getvoucher/:id', async function (request, response) {
 			send_response(response, "No data found")
 		}
 	//}
-})
+});
 
+// Middleware to handle undefined routes
+app.use(function (req, res) {
+    res.status(404).send(`Route '${req.originalUrl}' not found`);
+});
+
+// Error handling middleware (optional but recommended)
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Internal server error');
+});
 
 
 // Set port to start the app on

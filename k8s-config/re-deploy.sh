@@ -36,6 +36,3 @@ kubectl apply -f pv.yaml
 
 #kubectl run -i --tty --rm debug --image=curlimages/curl --restart=Never
 
-
-
-#Get _URL minikube service voucher-hub-service --url
