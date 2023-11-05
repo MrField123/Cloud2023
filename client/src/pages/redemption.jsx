@@ -24,10 +24,10 @@ const RedemptionPage = () => {
 
   const sendRequest = () => {
    axios
-    .get(`http://127.0.0.1/getvoucher/1`)
+    .get('/read/getvoucher/1')
 
     .then(response => {
-      console.log('Received data:', response.data);
+      console.log('Received data from read:', response.data);
       // Process the received data here
     })
     .catch(error => {
