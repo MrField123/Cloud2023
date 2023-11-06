@@ -10,46 +10,59 @@ import {
   CardFooter,
   List,
   ListItem,
-  Button
+  Button,
+  f7
 } from 'framework7-react';
 import { QrReader } from 'react-qr-reader';
 import axios from 'axios';
-import dns from 'dns.js';
+
 
 
 const RedemptionPage = () => {
   const [qrData, setQrData] = useState(null);
+  const [id, setId] = useState("-");
+  const [type, setType] = useState("-");
+  const [code, setCode] = useState("-");
+  const [value, setValue] = useState("-");
+  const [name, setName] = useState("-");
+  const [valid, setValid] = useState("-");
 
-  let voucherId = 123; // Replace with the actual voucher ID you want to retrieve
-
-  const sendRequest = () => {
-   axios
-    .get('/read/getvoucher/1')
-
-    .then(response => {
-      console.log('Received data from read:', response.data);
-      // Process the received data here
-    })
-    .catch(error => {
-      console.error('There was a problem with the request:', error);
-    });
-  }
-
+  const getVoucher = (voucherId) => {
+    axios.get(`/read/getvoucher/${voucherId}`)
+      .then(response => {
+        console.log('Received data:', response.data);
+        if (response.data.error && response.data.error === "No data found") {
+          f7.dialog.alert('Sorry, this voucher is not in our system...');
+          setType("-");
+          setCode("-");
+          setValue("-");
+          setName("-");
+          setValid("-");
+          setQrData(null);
+        } else {
+          const { id, type, code, value, name, valid } = response.data;
+          setType(type);
+          setCode(code);
+          setValue(value);
+          setName(name);
+          setValid(valid);
+          setQrData(data);
+        }
+      })
+      .catch(error => {
+        console.error('There was a problem with the request:', error);
+        setType("-");
+        setCode("-");
+        setValue("-");
+        setName("-");
+        setValid("-");
+      });
+  };
 
   // Function to handle QR code scan results
   const handleScan = (data) => {
     if (data) {
-
-      axios.get(`http://my-super-app-service:8080/getvoucher/${voucherId}`)
-      .then(response => {
-        console.log('Received data:', response.data);
-        // Process the received data here
-      })
-      .catch(error => {
-        console.error('There was a problem with the request:', error);
-      });
-
-      setQrData(data);
+      getVoucher(data.text);
     }
   };
 
@@ -57,6 +70,10 @@ const RedemptionPage = () => {
   const handleError = (error) => {
     console.error(error);
   };
+
+  const handleRedeem = () => {
+    console.log("Voucher invalidated");
+  }
 
   return (
     <Page name="redemption">
@@ -86,19 +103,17 @@ const RedemptionPage = () => {
             <Card title='Voucher' raised='true'>
               <CardContent padding={false}>
                 <List mediaList>
-                  <ListItem title="-" subtitle="Type" text="" />
-                  <ListItem title="-" subtitle="Value" text="" />
-                  <ListItem title="-" subtitle="Name" text="" />
-                  <ListItem title="-" subtitle="Status" text="" />
+                  <ListItem title={type} subtitle="Type" text="" />
+                  <ListItem title={value} subtitle="Value" text="" />
+                  <ListItem title={name} subtitle="Name" text="" />
+                  <ListItem title={valid} subtitle="Status" text="" />
                 </List>
-                <Button onClick={sendRequest} style={{ width: "180px" }}>
-                  Test
-                </Button>
               </CardContent>
               <CardFooter>
                 <span>{qrData ? qrData.text : ""}</span>
               </CardFooter>
             </Card>
+            <Button onClick={handleRedeem}>Redeem Voucher</Button>
           </div>
         </Block>
       </div>

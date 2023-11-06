@@ -12,6 +12,7 @@ import {
   Button,
   Range
 } from 'framework7-react';
+import axios from 'axios';
 
 export default () => {
 
@@ -40,6 +41,20 @@ export default () => {
     return type !== "" && name !== "";
   };
 
+  // API Call mit Voucher Details als JSON body
+  const sendVoucherDetails = (voucherData) => {
+    console.log(voucherData);
+    axios.post('/write/postvoucher', voucherData)
+      .then(response => {
+        console.log('Voucher details sent:', response.data);
+        // Handle the response as needed
+      })
+      .catch(error => {
+        console.error('Error sending voucher details:', error);
+        // Handle errors, e.g., show an error message to the user
+      });
+  };
+
   // Gutschein erstellen
   const handleCreateVoucher = () => {
     const randomCode = generateRandomCode(); // Zufälliger Gutscheincode
@@ -47,6 +62,16 @@ export default () => {
     setShowQRCode(true); // QR Code einblenden
     toggleReset(); // Show the "Reset" button
     toggleCreateButton(); // Hide the "Create Voucher" button
+    // Prepare voucher data in the required format
+    const voucherData = {
+      code: randomCode,
+      type: type, // Ensuring type is in lowercase as per the required format
+      value: value,
+      name: name
+    };
+
+    // Call the API to send voucher details
+    sendVoucherDetails(voucherData);
   };
 
   // Seite zurücksetzen
