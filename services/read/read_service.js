@@ -1,16 +1,8 @@
-const dns = require('dns').promises
-const os = require('os')
-const prometheusBundle = require("express-prom-bundle");
 const express = require('express')
 const { addAsync } = require('@awaitjs/express')
 const app = addAsync(express())
 const mariadb = require('mariadb')
-const MemcachePlus = require('memcache-plus')
-const inefficient = require('inefficient');
-const { parse } = require('path');
 const cors = require("cors");
-
-
 
 //Database configuration
 const pool = mariadb.createPool({
@@ -21,8 +13,8 @@ const pool = mariadb.createPool({
 	connectionLimit: 5
 })
 
-//Get data from database
-async function getFromDatabase(id) {
+//Fetch data from database
+async function fetchFromDB(id) {
 	let connection
 	let query = 'SELECT * from vouchers WHERE code = ? LIMIT 1'
 
@@ -45,28 +37,25 @@ async function getFromDatabase(id) {
 	}
 }
 
-//Get data from database
-async function postToDatabase(query) {
-	let connection
-	console.log("INSERT TO DB");
-	try {
-		connection = await pool.getConnection()
-		console.log("Executing query " + query)
-		let res = await connection.query(query)
-		return res;
-	} catch{
-		return null;
-	} finally {
-		if (connection)
-			connection.end()
-	}
-}
-
-//Send HTML response to client
+//Stringify the DB response and send it to the client
 function send_response(response, dbResult) {
-
 	response.send(JSON.stringify(dbResult));
 }
+
+//Get metadata for QR-Code
+app.getAsync('/getvoucher/:id', async function (request, response) {
+	let voucherid = request.params["id"]
+		let data = await fetchFromDB(voucherid)
+		if (data) {
+			console.log(`Got data=${data}`)
+			
+		} else {
+			data = {
+				error: "No data found"
+			}
+		}
+		send_response(response, data)
+})
 
 //CORS
 app.use(cors({
@@ -75,37 +64,6 @@ app.use(cors({
     allowedHeaders: 'Content-Type,Authorization',
     optionsSuccessStatus: 200
 }))
-
-// Add prometheus metrics middleware
-app.use(prometheusBundle({
-	includePath: true,
-	customLabels: { project_name: 'my-express-app' },
-}))
-
-app.post('/postvoucher', (req, res) => {
-	app.use(express.json())
-	let v = res.json(req.body);
-	console.log(v);
-	console.log("CREATING DB STATEMENT");
-	let query = 'INSERT INTO `vouchers` (`type`,`code`,`value`,`name`,`valid`) VALUES (' + v.type +' ,' + v.code +' ,' + v.value +' ,' + v.name +' ,' + v.valid+');'
-	console.log(query);
-	postToDatabase(query);
-	send_response(res, "RESPONSE");
-  });
-
-// Get data about a single person
-app.getAsync('/getvoucher/:id', async function (request, response) {
-	let voucherid = request.params["id"]
-		let data = await getFromDatabase(voucherid)
-		if (data) {
-			console.log(`Got data=${data}`)
-			send_response(response, data)
-		} else {
-			send_response(response, "No data found")
-		}
-	//}
-})
-
 
 // Middleware to handle undefined routes
 app.use(function (req, res) {
@@ -118,7 +76,6 @@ app.use(function (err, req, res, next) {
     res.status(500).send('Internal server error');
 });
 
-
 // Set port to start the app on
 app.set('port', (process.env.PORT || 8080))
 
@@ -126,4 +83,3 @@ app.set('port', (process.env.PORT || 8080))
 app.listen(app.get('port'), function () {
 	console.log("Node app is running at localhost:" + app.get('port'))
 })
- // Ende
