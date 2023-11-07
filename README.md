@@ -34,6 +34,8 @@ Es wurde mit dem Open-SOurce-Framework "Framework7" und React realisiert. Framew
 
 Da mehr lesende als schreibende Zugriffe auf die Applikation erwartet werden, wird lesender und schreibender Service bewusste getrennt, um eine möglichst ressourceneffiziente Skalierung zu ermöglichen. Dies folgt somit dem Architekturmuster von Microservices, bei dem Anwendungen in kleinere, unabhängige und lose gekoppelte Dienste aufgeteilt werden, die jeweils spezifische Funktionen erfüllen. Diese Dienste können unabhängig voneinander entwickelt, bereitgestellt und skaliert werden. Eine mögliche Metrik für die Skalierung der Services wäre die Auslastung der CPU. 
 
+Ggf hier noch die endpunkte einzeln beschreiben?
+
 **Datenbank**
 <br>Für die Anwendung wird eine MariaDB genutzt, welche die Daten über en Persistent Volume speichert. 
 Bei der Skalierung der Anwendung ist es von Bedeutung, auch die Datenbank mitzubedenken. Da bei der Anwendung meh lesende als schreibende Zugriffe erwartet werden, kann das Prinzip der Master-Slave-Replikation angewendet werden. 
