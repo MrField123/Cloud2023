@@ -45,7 +45,7 @@ function send_response(response, dbResult) {
 //Get metadata for QR-Code
 app.getAsync('/getvoucher/:id', async function (request, response) {
 	let voucherid = request.params["id"]
-		let data = await fetchFromDB(voucherid)
+		let data = await fetchFromDB(voucherid);
 		if (data) {
 			console.log(`Got data=${data}`)
 			

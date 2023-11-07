@@ -10,8 +10,6 @@ const inefficient = require('inefficient');
 const { parse } = require('path');
 const cors = require("cors");
 
-
-
 //Database configuration
 const pool = mariadb.createPool({
 	host: 'my-app-mariadb-service',
@@ -21,41 +19,20 @@ const pool = mariadb.createPool({
 	connectionLimit: 5
 })
 
-//Get data from database
-async function getFromDatabase(id) {
+//Post new voucher to database
+async function postToDatabase(data) {
 	let connection
-	let query = 'SELECT * from vouchers WHERE code = ? LIMIT 1'
-
-	try {
-		connection = await pool.getConnection()
-		console.log("Executing query " + query)
-		let res = await connection.query(query, [id])
-		let row = res[0]
-
-		if (row) {
-			console.log("Query result = ", row)
-			return row;
-		} else {
-			return null;
-		}
-
-	} finally {
-		if (connection)
-			connection.end()
-	}
-}
-
-//Get data from database
-async function postToDatabase(query) {
-	let connection
+	console.log("CREATING DB STATEMENT");
+	let query = 'INSERT INTO `vouchers` (`code`, `type`, `value`, `name`, `valid`) VALUES (?,?,?,?,?);'
+	console.log(query);
 	console.log("INSERT TO DB");
 	try {
 		connection = await pool.getConnection()
 		console.log("Executing query " + query)
-		let res = await connection.query(query)
-		return res;
+		let res = await connection.query(query, [data.code, data.type, data.value, data.name, 1])
+		return "SUCCESS";
 	} catch{
-		return null;
+		return "ERROR";
 	} finally {
 		if (connection)
 			connection.end()
@@ -63,9 +40,8 @@ async function postToDatabase(query) {
 }
 
 //Send HTML response to client
-function send_response(response, dbResult) {
-
-	response.send(JSON.stringify(dbResult));
+function send_response(response, data) {
+	response.send(JSON.stringify(data));
 }
 
 //CORS
@@ -75,37 +51,18 @@ app.use(cors({
     allowedHeaders: 'Content-Type,Authorization',
     optionsSuccessStatus: 200
 }))
+app.use(express.json());
 
-// Add prometheus metrics middleware
-app.use(prometheusBundle({
-	includePath: true,
-	customLabels: { project_name: 'my-express-app' },
-}))
-
+// Service to receive a new voucher and insert it into database
 app.post('/postvoucher', (req, res) => {
-	app.use(express.json())
-	let v = res.json(req.body);
-	console.log(v);
-	console.log("CREATING DB STATEMENT");
-	let query = 'INSERT INTO `vouchers` (`type`,`code`,`value`,`name`,`valid`) VALUES (' + v.type +' ,' + v.code +' ,' + v.value +' ,' + v.name +' ,' + v.valid+');'
-	console.log(query);
-	postToDatabase(query);
-	send_response(res, "RESPONSE");
+	console.log("NEW POST REQUEST");
+	let data = req.body;
+	console.log(data);
+	let dbRes = postToDatabase(data);
+	send_response(res, dbRes);
   });
 
-// Get data about a single person
-app.getAsync('/getvoucher/:id', async function (request, response) {
-	console.log('Route was hit for /getvoucher/:id');
-	let voucherid = request.params["id"]
-		let data = await getFromDatabase(voucherid)
-		if (data) {
-			console.log(`Got data=${data}`)
-			send_response(response, data)
-		} else {
-			send_response(response, "No data found")
-		}
-	//}
-});
+
 
 // Middleware to handle undefined routes
 app.use(function (req, res) {
@@ -126,4 +83,3 @@ app.set('port', (process.env.PORT || 1234))
 app.listen(app.get('port'), function () {
 	console.log("Node app is running at localhost:" + app.get('port'))
 })
- // Ende
