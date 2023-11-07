@@ -39,9 +39,29 @@ async function postToDatabase(data) {
 	}
 }
 
+//Redeem voucher
+async function updateDatabase(voucherCode) {
+	let connection
+	console.log("CREATING DB STATEMENT");
+	let query = 'UPDATE `vouchers` SET `valid` = 0 WHERE code = ?;'
+	console.log(query);
+	console.log("INSERT TO DB");
+	try {
+		connection = await pool.getConnection()
+		console.log("Executing query " + query)
+		let res = await connection.query(query, [voucherCode])
+		return "SUCCESS";
+	} catch{
+		return "ERROR";
+	} finally {
+		if (connection)
+			connection.end()
+	}
+}
+
 //Send HTML response to client
 function send_response(response, data) {
-	response.send(JSON.stringify(data));
+	response.send(data);
 }
 
 //CORS
@@ -62,6 +82,14 @@ app.post('/postvoucher', (req, res) => {
 	send_response(res, dbRes);
   });
 
+  // Service to redeem a voucher
+  app.getAsync('/redeem/:code', async function (req, res) {
+	console.log("NEW PUT REQUEST");
+	let voucherCode = req.params["code"];
+	console.log(voucherCode);
+	let dbRes = updateDatabase(voucherCode);
+	send_response(res, dbRes);
+  });
 
 
 // Middleware to handle undefined routes
