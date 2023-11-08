@@ -4,15 +4,18 @@
 ---
 ## Aufgabenteil Prof. Pfisterer
 ### Zielsetzung der Anwendung
-Ziel ist es, eine Webanwendung zu realisieren, mit der QR-Codes als Gutscheine generiert werden können.
-Diese Gutscheine sollen anschließend auf den Client heruntergeladen werden können.
-Hierbei kann ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
+Im Rahmen der Projektarbeit wurde eine Webanwendung umgesetzt, mit der Gutscheine in Form von QR-Codes generiert und eingelöst werden können. Das Ziel der Anwendung ist es, kleinen bis mittelgroßen Veranstaltern (wie beispielsweise Vereinen) eine intuitive und komfortable Lösung zu bieten, digitale Wertmarken für Veranstaltungen zu verwalten. Die Anwendung soll einfach abrufbar und mobil verfügbar sein, um auf den Events vor Ort zum Einsatz zu kommen. Außerdem soll die Archtitektur der Anwendung über ihre Skalierbarkeit berücksichtigen, dass ohne großen Aufwand neue Veranstalter hinzu genommen werden können. Es ist des Weiteren notwendig, dass einzelne Teile der Anwendung besonders zu Zeiten mit hohem Anfragevolumen, wie beispielsweise an den Abenden am Wochenende, bei höherer Last performant bleiben. 
+
+Über die Anwendung soll es einerseits für Veranstalter möglich sein, neue Gutscheine auszugeben. Dazu soll es eine Funktion geben, die Gutscheine generiert und in einer Datenbank speichert. Es soll außerdem möglich sein, diese Gutscheine anschließend auf den Client herunterzuladen, um sie später einlösen zu können.
+Bei der Anlage soll ein neuer Gutscheincode mit folgenden Metadaten angelegt werden:
  - Typ (bspw. Essen, Trinken etc.)
  - Wert
  - Name
 
-Diese Metadaten, Inhalt des QR-Codes (Zufalls-String) sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank gespeichert werden.
-Im zweiten Teil der Webanwendung kann ein solcher QR-Code gescannt und dadurch alle oben genannten Metadaten abgerufen werden. Hierbei wird auch geprüft, ob der Code noch gültig ist oder bereits eingelöst wurde. Ist er noch nicht eingelöst, kann er entsprechend als eingelöst aktualisiert werden. 
+Diese Metadaten, der Inhalt des QR-Codes (Zufalls-String) sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank abgelegt werden.
+
+Im zweiten Teil der Webanwendung soll es möglich sein, den Gutschein über den heruntergeladenen QR Code abzurufen. Hierbei sollen die Informationen des Gutscheins geladen werden und es soll auch auch geprüft werden, ob der Code noch gültig ist oder bereits eingelöst wurde. Sollte der Gutschein noch gültig sein, soll es hier eine Möglichkeit zur Entwertung des Gutscheins geben. Den Veranstaltern soll damit eine Möglichkeit geboten werden, die Gutscheine an Verkaufsstellen entgegenzunehmen. 
+
 <br><br>
 Um die Zielsetzung zu erreichen, muss die Datenbank folgendes Datenbankschema realisieren.
 <br>
@@ -42,6 +45,10 @@ Bei der Skalierung der Anwendung ist es von Bedeutung, auch die Datenbank mitzub
 Bei der Master-Slave-Replikation handelt es sich um einen Prozess in einer Datenbankumgebung, bei dem Datenbanktransaktionen (Änderungen an Daten) von einem Master-Datenbankserver auf einen oder mehrere Slave-Server repliziert werden. Dieses Verfahren bietet die Möglichkeit, Leselast von einem Master-Server auf Slave-Server zu verteilen und gleichzeitig Redundanz und Fehlertoleranz zu gewährleisten.
 Die im Rahmen dieser Anwendung genutzte Datenbank MariaDB unterstützt ein Master-Slave-Prinzip, wenngleich dieses durch die beschränkte Bearbeitungszeit nicht implementiert wurde. 
 Neben der Skalierung nach dem Maser-Slave Prinzip können auch Caching-Mechanismen eingesetzt werden, um die Last auf der Datenbank zu reduzieren. Die Verwendung von Caching-Technologien wie Memcached oder Redis kann die Leistung verbessern, indem häufig abgerufene Daten zwischengespeichert werden, um die Anzahl der Datenbankabfragen zu reduzieren.
+
+**Networking**
+
+**Weiteres**
 
 ### Herausforderungen  
 Da der Entwurf der Anwendung vorsieht, Frontend und Backend einerseits logisch voreinenader zu trennen und andererseits auf Basis verschiedener Technologien zu implementieren, hat sich die Kommunikation zwischen Backend und Frontend als größte Herausforderung dargestellt. So war es herausfordernd, die Netzwerkkommunikation zwischen den Pods für Frontend und Backend aufzubauen.
