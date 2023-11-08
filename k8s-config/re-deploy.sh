@@ -25,7 +25,7 @@ kubectl delete ingress --all
 kubectl apply -f app-deployment-frontend.yaml
 kubectl apply -f voucher-hub-service.yaml
 kubectl apply -f mariadb-deployment.yaml
-kubectl apply -f k8s-mariadb-service.yaml
+kubectl apply -f mariadb-service.yaml
 kubectl apply -f write-service-deployment.yaml
 kubectl apply -f read-service-deployment.yaml
 kubectl apply -f write-service-service.yaml
@@ -33,6 +33,4 @@ kubectl apply -f read-service-service.yaml
 kubectl apply -f ingress.yaml
 kubectl apply -f pv.yaml
 
-
-#kubectl run -i --tty --rm debug --image=curlimages/curl --restart=Never
 

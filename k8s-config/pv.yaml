@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pv-claim
   labels:
-    app: my-mariadb
+    app: app-mariadb
 spec:
   accessModes:
     - ReadWriteOnce
