@@ -16,15 +16,19 @@ const pool = mariadb.createPool({
 //Post new voucher to database
 async function postToDatabase(data) {
 	let connection;
+
 	console.log("CREATING DB STATEMENT");
 	let query = 'INSERT INTO `vouchers` (`code`, `type`, `value`, `name`, `valid`) VALUES (?,?,?,?,?);'
 	console.log(query);
 	console.log("INSERT TO DB");
+
 	try{
 		connection = await pool.getConnection()
+
 		console.log("Executing query " + query)
 		let dbRes = await connection.query(query, [data.code, data.type, data.value, data.name, 1])
 		console.log("DB RESPONSE:" + dbRes);
+
 		return dbRes;
 	} finally {
 		if (connection)
@@ -36,15 +40,19 @@ async function postToDatabase(data) {
 async function updateDatabase(voucherCode) {
 	let data;
 	let connection
+
 	console.log("CREATING DB STATEMENT");
 	let query = 'UPDATE `vouchers` SET `valid` = 0 WHERE code = ?;'
 	console.log(query);
 	console.log("UPDATE DB");
+
 	try {
-		connection = await pool.getConnection()
+		connection = await pool.getConnection();
+
 		console.log("Executing query " + query)
 		let dbRes = await connection.query(query, [voucherCode])
 		console.log("DB RESPONSE: " + dbRes);
+
 		return dbRes;
 	} finally {
 		if (connection)
@@ -113,7 +121,6 @@ app.use(function (err, req, res, next) {
     console.error(err.stack);
     res.status(500).send('Internal server error');
 });
-
 
 // Set port to start the app on
 app.set('port', (process.env.PORT || 1234))

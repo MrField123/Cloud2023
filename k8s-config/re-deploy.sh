@@ -34,5 +34,3 @@ kubectl apply -f ingress.yaml
 kubectl apply -f pv.yaml
 
 
-#kubectl run -i --tty --rm debug --image=curlimages/curl --restart=Never
-

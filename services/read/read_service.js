@@ -58,9 +58,6 @@ app.getAsync('/getvoucher/:id', async function (request, response) {
 		send_response(response, data)
 })
 
-// Add stress test endpoint, cf. https://github.com/bermi/inefficient
-/*app.get('/stress', inefficient)*/
-
 //CORS
 app.use(cors({
     origin: 'http://localhost:8080',
