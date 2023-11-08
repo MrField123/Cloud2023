@@ -15,8 +15,7 @@ Bei der Anlage soll ein neuer Gutscheincode mit folgenden Metadaten angelegt wer
 Diese Metadaten, der Inhalt des QR-Codes (Zufalls-String) sowie die Information ob der Code noch gültig oder bereits entwertet ist, sollen in einer Datenbank abgelegt werden.
 
 Im zweiten Teil der Webanwendung soll es möglich sein, den Gutschein über den heruntergeladenen QR Code abzurufen. Hierbei sollen die Informationen des Gutscheins geladen werden und es soll auch auch geprüft werden, ob der Code noch gültig ist oder bereits eingelöst wurde. Sollte der Gutschein noch gültig sein, soll es hier eine Möglichkeit zur Entwertung des Gutscheins geben. Den Veranstaltern soll damit eine Möglichkeit geboten werden, die Gutscheine an Verkaufsstellen entgegenzunehmen. 
-
-<br><br>
+<br>
 Um die Zielsetzung zu erreichen, muss die Datenbank folgendes Datenbankschema realisieren.
 <br>
 ![Alt text](assets/image-4.png)
@@ -29,8 +28,15 @@ Die Anwendung wird als cloud-native Anwendung realisiert und verfolgt die in der
 
 
 **Frontend**
-<br>Das Frontend enthält insgesamt zwei Ansichten. Eine Ansicht zum erstellen von QR-Codes und eine zweite Ansicht zum scannen dieser.
-Es wurde mit dem Open-SOurce-Framework "Framework7" und React realisiert. Framework7 bietet den Vorteil bereits einen Baukasten von UI-Komponenten und -Layouts, um interaktive und ansprechende Anwendungen zu erstellen, zu bieten.
+<br>
+Das Frontend wurde mit dem Open-Source-Framework Framework7 und React.js realisiert (https://framework7.io/react/). Durch die eingebauten UI-Komponenten und -Layouts in Framework7 konnten eine ansprechende Anwendung mit benutzerfreundlichen Interaktionsmöglichkeiten erstellt werden. Die F7-React-Anwendung besteht aus 2 Pages, zwischen denen über die Navigationsleiste am unteren Bildschirmrand gewechselt werden kann:
+
+Creation: 
+Die Page Creation bietet den Veranstaltern die Möglichkeit, neue Gutscheine anzulegen. Dazu können über ein Formular der Typ und der Wert des Gutscheins festgelegt werden, sowie der Name der Person angegeben werden, auf die der Gutschein ausgestellt werden soll. Über den "Create Voucher Button" wird dann ein Gutschein mit den angegeben Metadaten angelegt. Dazu wird mithilfe des HTTP-Clients Axios der Write-Service gerufen (https://github.com/axios/axios).
+Damit der Gutschein auch durch den Nutzer abgespeichert und später eingelöst werden kann, wird aus dem zufällig generierten Gutscheincode ein QR-Code erstellt, der über die Seite heruntergeladen werden kann. Um den QR-Code zu generieren wird die react-qr-code Library verwendet (https://www.npmjs.com/package/react-qr-code).
+
+Redemption:
+Die Page Redemption dient dazu, Gutscheine einzulesen und sie zu entwerten. Für das Einlesen des Gutscheins wurde auf der linken Seite der Page ein QR-Code-Scanner platziert, der mithilfe der react-qr-reader Komponente umgesetzt wurde (https://www.npmjs.com/package/react-qr-reader). Nach dem Scan wird ebenfalls Axios genutzt um einen HTTP Call zu erzeugen. Mit diesem wird der Read Service gerufen, um die Informationen zu dem Gutschein auszulesen. Diese werden anschließend auf der rechten Seite der Page angezeigt. Ist der Gutschein noch gültig, so gibt es die Möglichkeit, ihn einzulösen. Dies wurde über einen zusätzlichen Endpoint im Write Service umgesetzt. 
 
 **Services**
 <br>Das Backend in Form von zwei Services basiert auf Node.js als Laufzeitumgebung. Somit erfolgt die Implementierung in JavaScript. Um grundlegende Funktionen nicht selbst programmieren zu müssen, wird das Framework Express für die Erstellung der Services verwendet. 
