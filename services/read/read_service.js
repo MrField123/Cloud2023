@@ -3,6 +3,7 @@ const { addAsync } = require('@awaitjs/express')
 const app = addAsync(express())
 const mariadb = require('mariadb')
 const cors = require("cors");
+const inefficient = require('inefficient')
 
 //Database configuration
 const pool = mariadb.createPool({
@@ -56,6 +57,9 @@ app.getAsync('/getvoucher/:id', async function (request, response) {
 		}
 		send_response(response, data)
 })
+
+// Add stress test endpoint, cf. https://github.com/bermi/inefficient
+/*app.get('/stress', inefficient)*/
 
 //CORS
 app.use(cors({

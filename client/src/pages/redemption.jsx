@@ -27,6 +27,17 @@ const RedemptionPage = () => {
   const [name, setName] = useState("-");
   const [valid, setValid] = useState("-");
 
+  const [showRedeem, setShowRedeem] = useState(false);
+
+  const toggleRedeem = (status) => {
+    console.log('Voucher is', status);
+    if (status === "valid") {
+      setShowRedeem(true);
+    } else {
+      setShowRedeem(false);
+    }
+  };
+
   const getVoucher = (voucherId) => {
     axios.get(`/read/getvoucher/${voucherId}`)
       .then(response => {
@@ -39,14 +50,22 @@ const RedemptionPage = () => {
           setName("-");
           setValid("-");
           setQrData(null);
+          toggleRedeem("invalid");
         } else {
           const { id, type, code, value, name, valid } = response.data;
           setType(type);
           setCode(code);
           setValue(value);
           setName(name);
-          setValid(valid);
-          setQrData(data);
+          if (valid === 1) {
+            setValid("valid");
+            toggleRedeem("valid");
+          } else {
+            setValid("invalid");
+            toggleRedeem("invalid");
+          }
+          setQrData(voucherId);
+          ;
         }
       })
       .catch(error => {
@@ -56,6 +75,7 @@ const RedemptionPage = () => {
         setValue("-");
         setName("-");
         setValid("-");
+        toggleRedeem("invalid");
       });
   };
 
@@ -72,7 +92,26 @@ const RedemptionPage = () => {
   };
 
   const handleRedeem = () => {
-    console.log("Voucher invalidated");
+    axios.get(`/write/redeem/${code}`)
+      .then(response => {
+        console.log('Received data:', response.data);
+        if (response.data === "SUCCESS") {
+          f7.dialog.alert('The voucher was successfully redeemed');
+          setValid("invalid");
+          toggleRedeem("invalid");
+        } else {
+          f7.dialog.alert('Sorry, something went wrong...');
+        }
+      })
+      .catch(error => {
+        console.error('There was a problem with the request:', error);
+        setType("-");
+        setCode("-");
+        setValue("-");
+        setName("-");
+        setValid("-");
+        toggleRedeem("invalid");
+      });
   }
 
   return (
@@ -104,7 +143,11 @@ const RedemptionPage = () => {
               <CardContent padding={false}>
                 <List mediaList>
                   <ListItem title={type} subtitle="Type" text="" />
-                  <ListItem title={value} subtitle="Value" text="" />
+                  <ListItem
+                    title={value !== "-" ? value + ' €' : "-"}
+                    subtitle="Value"
+                    text=""
+                  />
                   <ListItem title={name} subtitle="Name" text="" />
                   <ListItem title={valid} subtitle="Status" text="" />
                 </List>
@@ -113,7 +156,9 @@ const RedemptionPage = () => {
                 <span>{qrData ? qrData.text : ""}</span>
               </CardFooter>
             </Card>
-            <Button onClick={handleRedeem}>Redeem Voucher</Button>
+            {showRedeem && (
+              <Button onClick={handleRedeem}>Redeem Voucher</Button>
+            )}
           </div>
         </Block>
       </div>
