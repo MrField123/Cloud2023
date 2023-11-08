@@ -4,7 +4,7 @@ metadata:
   name: mariadb-service
 spec:
   selector:
-    app: my-mariadb
+    app: app-mariadb
   ports:
     - name: mariadb-prot
       protocol: TCP

@@ -9,11 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-mariadb
+      app: app-mariadb
   template:
     metadata:
       labels:
-        app: my-mariadb
+        app: app-mariadb
     spec:
       # Use the init container to download data to the location where the mariadb container expects it
       initContainers:
@@ -28,7 +28,7 @@ spec:
               mountPath: /tmp/data
       # The actual mariadb database
       containers:
-        - name: my-mariadb
+        - name: app-mariadb
           image: mariadb
           # Set required environment variables to initialize the container
           env:
