@@ -27,7 +27,7 @@ Die Anwendung wird als cloud-native Anwendung realisiert und verfolgt die in der
 ![Alt text](assets/image-2.png)
 
 
-**Frontend**
+**Frontend (client)**
 <br>
 Das Frontend wurde mit dem Open-Source-Framework Framework7 und React.js realisiert (https://framework7.io/react/). Durch die eingebauten UI-Komponenten und -Layouts in Framework7 konnten eine ansprechende Anwendung mit benutzerfreundlichen Interaktionsmöglichkeiten erstellt werden. Die F7-React-Anwendung besteht aus 2 Pages, zwischen denen über die Navigationsleiste am unteren Bildschirmrand gewechselt werden kann:
 
@@ -38,23 +38,26 @@ Damit der Gutschein auch durch den Nutzer abgespeichert und später eingelöst w
 Redemption:
 Die Page Redemption dient dazu, Gutscheine einzulesen und sie zu entwerten. Für das Einlesen des Gutscheins wurde auf der linken Seite der Page ein QR-Code-Scanner platziert, der mithilfe der react-qr-reader Komponente umgesetzt wurde (https://www.npmjs.com/package/react-qr-reader). Nach dem Scan wird ebenfalls Axios genutzt um einen HTTP Call zu erzeugen. Mit diesem wird der Read Service gerufen, um die Informationen zu dem Gutschein auszulesen. Diese werden anschließend auf der rechten Seite der Page angezeigt. Ist der Gutschein noch gültig, so gibt es die Möglichkeit, ihn einzulösen. Dies wurde über einen zusätzlichen Endpoint im Write Service umgesetzt. 
 
-**Services**
+**Services (services)**
 <br>Das Backend in Form von zwei Services basiert auf Node.js als Laufzeitumgebung. Somit erfolgt die Implementierung in JavaScript. Um grundlegende Funktionen nicht selbst programmieren zu müssen, wird das Framework Express für die Erstellung der Services verwendet. 
 
-Da mehr lesende als schreibende Zugriffe auf die Applikation erwartet werden, wird lesender und schreibender Service bewusste getrennt, um eine möglichst ressourceneffiziente Skalierung zu ermöglichen. Dies folgt somit dem Architekturmuster von Microservices, bei dem Anwendungen in kleinere, unabhängige und lose gekoppelte Dienste aufgeteilt werden, die jeweils spezifische Funktionen erfüllen. Diese Dienste können unabhängig voneinander entwickelt, bereitgestellt und skaliert werden. Eine mögliche Metrik für die Skalierung der Services wäre die Auslastung der CPU. 
+Da mehr lesende als schreibende Zugriffe auf die Applikation erwartet werden, wird lesender und schreibender Service bewusste getrennt, um eine möglichst ressourceneffiziente Skalierung zu ermöglichen. Dies folgt somit dem Architekturmuster von Microservices, bei dem Anwendungen in kleinere, unabhängige und lose gekoppelte Dienste aufgeteilt werden, die jeweils spezifische Funktionen erfüllen. Diese Dienste können unabhängig voneinander entwickelt, bereitgestellt und skaliert werden. Eine mögliche Metrik für die Skalierung der Services wäre die Auslastung der CPU oder die Response Time. 
 
-Ggf hier noch die endpunkte einzeln beschreiben?
+Read-Service: 
+Der Read-Service stellt die Endpunkte für lesende Operationen auf die Datenbank bereit. Er wurde bewusst von den schreibenden Operationen getrennt, da es zu Zeiten einer Veranstalung wahrscheinlich zu besonders vielen lesenden Zugriffen kommt. Der Read-Service stellt den Enpoint "/getvoucher/:id" bereit, mit dem über den Gutscheincode die Daten eines Gutscheins im JSON-Format zurückgegeben werden. Die empfangenen Anfragen des Frontends verarbeitet er und leitet sie an die Datenbank (MariaDB) weiter.
 
-**Datenbank**
+Write-Service: 
+Der Write-Service stellt die Endpunkte für schreibende Operationen auf die Datenbank bereit. Über den Enpoint "/postvoucher" können über JSON neue Gutscheine angelegt werden. Über den Endpunkt "/redeem/:code" können Gutscheine mit ihrem Code als Parameter eingelöst und damit auf ungültig gesetzt werden.
+
+**Datenbank (database)**
 <br>Für die Anwendung wird eine MariaDB genutzt, welche die Daten über en Persistent Volume speichert. 
 Bei der Skalierung der Anwendung ist es von Bedeutung, auch die Datenbank mitzubedenken. Da bei der Anwendung meh lesende als schreibende Zugriffe erwartet werden, kann das Prinzip der Master-Slave-Replikation angewendet werden. 
 Bei der Master-Slave-Replikation handelt es sich um einen Prozess in einer Datenbankumgebung, bei dem Datenbanktransaktionen (Änderungen an Daten) von einem Master-Datenbankserver auf einen oder mehrere Slave-Server repliziert werden. Dieses Verfahren bietet die Möglichkeit, Leselast von einem Master-Server auf Slave-Server zu verteilen und gleichzeitig Redundanz und Fehlertoleranz zu gewährleisten.
 Die im Rahmen dieser Anwendung genutzte Datenbank MariaDB unterstützt ein Master-Slave-Prinzip, wenngleich dieses durch die beschränkte Bearbeitungszeit nicht implementiert wurde. 
 Neben der Skalierung nach dem Maser-Slave Prinzip können auch Caching-Mechanismen eingesetzt werden, um die Last auf der Datenbank zu reduzieren. Die Verwendung von Caching-Technologien wie Memcached oder Redis kann die Leistung verbessern, indem häufig abgerufene Daten zwischengespeichert werden, um die Anzahl der Datenbankabfragen zu reduzieren.
 
-**Networking**
+**Kubernetes Konfiguration (k8s-config)**
 
-**Weiteres**
 
 ### Herausforderungen  
 Da der Entwurf der Anwendung vorsieht, Frontend und Backend einerseits logisch voreinenader zu trennen und andererseits auf Basis verschiedener Technologien zu implementieren, hat sich die Kommunikation zwischen Backend und Frontend als größte Herausforderung dargestellt. So war es herausfordernd, die Netzwerkkommunikation zwischen den Pods für Frontend und Backend aufzubauen.

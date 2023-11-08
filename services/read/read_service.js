@@ -3,7 +3,7 @@ const { addAsync } = require('@awaitjs/express')
 const app = addAsync(express())
 const mariadb = require('mariadb')
 const cors = require("cors");
-const inefficient = require('inefficient');
+
 
 //Database configuration
 const pool = mariadb.createPool({
@@ -71,7 +71,7 @@ app.use(function (req, res) {
     res.status(404).send(`Route '${req.originalUrl}' not found`);
 });
 
-// Error handling middleware (optional but recommended)
+// Error handling middleware 
 app.use(function (err, req, res, next) {
     console.error(err.stack);
     res.status(500).send('Internal server error');
