@@ -21,7 +21,8 @@ const pool = mariadb.createPool({
 
 //Post new voucher to database
 async function postToDatabase(data) {
-	let connection
+	let connection;
+	let rdata;
 	console.log("CREATING DB STATEMENT");
 	let query = 'INSERT INTO `vouchers` (`code`, `type`, `value`, `name`, `valid`) VALUES (?,?,?,?,?);'
 	console.log(query);
@@ -30,9 +31,15 @@ async function postToDatabase(data) {
 		connection = await pool.getConnection()
 		console.log("Executing query " + query)
 		let res = await connection.query(query, [data.code, data.type, data.value, data.name, 1])
-		return "SUCCESS";
+		rdata = {
+			message: "Success"
+		}
+		return rdata;
 	} catch{
-		return "ERROR";
+		rdata = {
+			message: "Error"
+		}
+		return rdata;
 	} finally {
 		if (connection)
 			connection.end()
@@ -41,6 +48,7 @@ async function postToDatabase(data) {
 
 //Redeem voucher
 async function updateDatabase(voucherCode) {
+	let data;
 	let connection
 	console.log("CREATING DB STATEMENT");
 	let query = 'UPDATE `vouchers` SET `valid` = 0 WHERE code = ?;'
@@ -50,18 +58,24 @@ async function updateDatabase(voucherCode) {
 		connection = await pool.getConnection()
 		console.log("Executing query " + query)
 		let res = await connection.query(query, [voucherCode])
-		return "SUCCESS";
+		data = {
+			message: "Success"
+		}
+		return data;
 	} catch{
-		return "ERROR";
+		data = {
+			message: "Error"
+		}
+		return data;
 	} finally {
 		if (connection)
 			connection.end()
 	}
 }
 
-//Send HTML response to client
-function send_response(response, data) {
-	response.send(data);
+//Stringify message and send it to the client
+function send_response(response, result) {
+	response.send(JSON.stringify(result));
 }
 
 //CORS
@@ -78,8 +92,17 @@ app.post('/postvoucher', (req, res) => {
 	console.log("NEW POST REQUEST");
 	let data = req.body;
 	console.log(data);
-	let dbRes = postToDatabase(data);
-	send_response(res, dbRes);
+	let result = {
+		message: "Succcess"
+	}
+	try {
+		postToDatabase(data);
+	} catch (error) {
+		result.message = "Error";
+	}
+	console.log(result);
+	send_response(res, result);
+	console.log("END POST REQUEST");
   });
 
   // Service to redeem a voucher
@@ -87,8 +110,17 @@ app.post('/postvoucher', (req, res) => {
 	console.log("NEW PUT REQUEST");
 	let voucherCode = req.params["code"];
 	console.log(voucherCode);
-	let dbRes = updateDatabase(voucherCode);
-	send_response(res, dbRes);
+	let result = {
+		message: "Succcess"
+	}
+	try {
+		updateDatabase(voucherCode);
+	} catch (error) {
+		result.message = "Error";
+	}
+	console.log(result);
+	send_response(res, result);
+	console.log("END PUT REQUEST");
   });
 
 
