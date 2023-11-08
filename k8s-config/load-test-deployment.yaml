@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: load-test-pod
+spec:
+  containers:
+  - name: load-test-container
+    image: jordi/ab
+    command: ["ab", "-n", "100000", "-c", "100", "http://10.106.101.247:8080/getvoucher/QRCode1"]  
