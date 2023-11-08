@@ -14,7 +14,7 @@ let memcachedServers = []
 
 //Database configuration
 const pool = mariadb.createPool({
-	host: 'my-app-mariadb-service',
+	host: 'mariadb-service',
 	database: 'sportsdb',
 	user: 'root',
 	password: 'mysecretpw',

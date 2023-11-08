@@ -7,7 +7,7 @@ const inefficient = require('inefficient')
 
 //Database configuration
 const pool = mariadb.createPool({
-	host: 'my-app-mariadb-service',
+	host: 'mariadb-service',
 	database: 'vouchers',
 	user: 'root',
 	password: 'mysecretpw',

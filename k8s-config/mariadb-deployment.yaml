@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: mariadb-deployment
   labels:
-    app: my-mariadb-deployment
+    app: mariadb-deployment
 spec:
   # A single mariadb instance
   replicas: 1
