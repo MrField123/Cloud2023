@@ -1,13 +1,7 @@
-const dns = require('dns').promises
-const os = require('os')
-const prometheusBundle = require("express-prom-bundle");
 const express = require('express')
 const { addAsync } = require('@awaitjs/express')
 const app = addAsync(express())
 const mariadb = require('mariadb')
-const MemcachePlus = require('memcache-plus')
-const inefficient = require('inefficient');
-const { parse } = require('path');
 const cors = require("cors");
 
 //Database configuration
@@ -22,24 +16,16 @@ const pool = mariadb.createPool({
 //Post new voucher to database
 async function postToDatabase(data) {
 	let connection;
-	let rdata;
 	console.log("CREATING DB STATEMENT");
 	let query = 'INSERT INTO `vouchers` (`code`, `type`, `value`, `name`, `valid`) VALUES (?,?,?,?,?);'
 	console.log(query);
 	console.log("INSERT TO DB");
-	try {
+	try{
 		connection = await pool.getConnection()
 		console.log("Executing query " + query)
-		let res = await connection.query(query, [data.code, data.type, data.value, data.name, 1])
-		rdata = {
-			message: "Success"
-		}
-		return rdata;
-	} catch{
-		rdata = {
-			message: "Error"
-		}
-		return rdata;
+		let dbRes = await connection.query(query, [data.code, data.type, data.value, data.name, 1])
+		console.log("DB RESPONSE:" + dbRes);
+		return dbRes;
 	} finally {
 		if (connection)
 			connection.end()
@@ -53,20 +39,13 @@ async function updateDatabase(voucherCode) {
 	console.log("CREATING DB STATEMENT");
 	let query = 'UPDATE `vouchers` SET `valid` = 0 WHERE code = ?;'
 	console.log(query);
-	console.log("INSERT TO DB");
+	console.log("UPDATE DB");
 	try {
 		connection = await pool.getConnection()
 		console.log("Executing query " + query)
-		let res = await connection.query(query, [voucherCode])
-		data = {
-			message: "Success"
-		}
-		return data;
-	} catch{
-		data = {
-			message: "Error"
-		}
-		return data;
+		let dbRes = await connection.query(query, [voucherCode])
+		console.log("DB RESPONSE: " + dbRes);
+		return dbRes;
 	} finally {
 		if (connection)
 			connection.end()
