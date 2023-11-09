@@ -87,6 +87,7 @@ Im Rahmen des Projektes konnte die geplante Anwendung mit den wichtigsten Funkti
 
 ### Screencast Deployment der Anwendung und Demo-Case
 [![IMAGE ALT TEXT HERE](assets/image-3.png)](https://www.youtube.com/watch?v=1lhZxsMKfEw)
+![Alt text](assets/Screencast_Bröker_Acker_final_version.mov)
 ---
 ## Aufgabenteil Prof. Sturm
 Im Folgenden werden auf Basis der im Aufgabenteil von Prof. Pfisterer realisierten Anwendung die Aufgabenstellungen von Prof. Sturm beantwortet.
