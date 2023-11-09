@@ -1,7 +1,6 @@
-# Delete deployments
+# Delete all kubernetes ressources
 kubectl delete deployment --all
 
-# Delete services
 kubectl delete svc --all
 
 kubectl delete ingress --all
