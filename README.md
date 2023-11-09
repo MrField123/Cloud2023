@@ -50,17 +50,40 @@ Write-Service:
 Der Write-Service stellt die Endpunkte für schreibende Operationen auf die Datenbank bereit. Über den Enpoint "/postvoucher" können über JSON neue Gutscheine angelegt werden. Über den Endpunkt "/redeem/:code" können Gutscheine mit ihrem Code als Parameter eingelöst und damit auf ungültig gesetzt werden.
 
 **Datenbank (database)**
-<br>Für die Anwendung wird eine MariaDB genutzt, welche die Daten über en Persistent Volume speichert. 
-Bei der Skalierung der Anwendung ist es von Bedeutung, auch die Datenbank mitzubedenken. Da bei der Anwendung meh lesende als schreibende Zugriffe erwartet werden, kann das Prinzip der Master-Slave-Replikation angewendet werden. 
+<br>Für die Anwendung wird eine MariaDB genutzt, welche die Daten über ein Persistent Volume speichert. 
+Bei der Skalierung der Anwendung ist es von Bedeutung, auch die Datenbank mitzubedenken. Da bei der Anwendung mehr lesende als schreibende Zugriffe erwartet werden, kann das Prinzip der Master-Slave-Replikation angewendet werden. 
 Bei der Master-Slave-Replikation handelt es sich um einen Prozess in einer Datenbankumgebung, bei dem Datenbanktransaktionen (Änderungen an Daten) von einem Master-Datenbankserver auf einen oder mehrere Slave-Server repliziert werden. Dieses Verfahren bietet die Möglichkeit, Leselast von einem Master-Server auf Slave-Server zu verteilen und gleichzeitig Redundanz und Fehlertoleranz zu gewährleisten.
 Die im Rahmen dieser Anwendung genutzte Datenbank MariaDB unterstützt ein Master-Slave-Prinzip, wenngleich dieses durch die beschränkte Bearbeitungszeit nicht implementiert wurde. 
 Neben der Skalierung nach dem Maser-Slave Prinzip können auch Caching-Mechanismen eingesetzt werden, um die Last auf der Datenbank zu reduzieren. Die Verwendung von Caching-Technologien wie Memcached oder Redis kann die Leistung verbessern, indem häufig abgerufene Daten zwischengespeichert werden, um die Anzahl der Datenbankabfragen zu reduzieren.
 
 **Kubernetes Konfiguration (k8s-config)**
+Um die verschiedenen Komponenten der Anwendung zu orchestrieren und ein Deployment in einer Cloud Infrastruktur zu ermöglichen wurden Kubernetes Ressourcen mithilfe von yaml-Dateien konfiguriert. Zu Entwicklungszwecken wurde mithilfe von minikube ein lokaler Kubernetes Cluster gestartet, auf dem die Ressourcen deployed werden konnten (https://minikube.sigs.k8s.io/docs/). Um das entwickelte Frontend und die Service zusammen mit ihren Abhängigkeiten nutzen zu können, wurden für sie jeweils ein Dockerfile erstellt, mit dem ein Image im Minikube Docker Directory gebildet werden kann. Die Kubernetes Konfiguration umfasst die folgenden Ressourcen: 
+
+Frontend:
+- Deployment für die Framework7 React App
+- Service für das Frontend
+
+Services:
+- Deployment für den Express.js Read-Service
+- Service für den Read-Service
+- Deployment für den Express.js Write-Service
+- Service für den Write-Service
+
+Datenbank:
+- Deployment für die MariaDB Datenbank
+- Service für die MariaDB Datenbank
+- Persistant Volume Claim für die Datenbank
+
+Weiteres:
+- Ingress zur Verwaltung des Networkings und um die Services extern zu exposen
+- Horizontal Pod Autoscaler (HPA) um die Skalierbarkeit einzelner Ressourcen zu demonstrieren
+- Deployment für Load-Test, um mithilfe von Test-Workload das Autoscaling auszulösen
 
 
-### Herausforderungen  
-Da der Entwurf der Anwendung vorsieht, Frontend und Backend einerseits logisch voreinenader zu trennen und andererseits auf Basis verschiedener Technologien zu implementieren, hat sich die Kommunikation zwischen Backend und Frontend als größte Herausforderung dargestellt. So war es herausfordernd, die Netzwerkkommunikation zwischen den Pods für Frontend und Backend aufzubauen.
+### Herausforderungen und kritische Reflexion
+Da der Entwurf der Anwendung vorsieht, Frontend und Backend einerseits logisch voreinenader zu trennen und andererseits auf Basis verschiedener Technologien zu implementieren, hat sich die Kommunikation zwischen Backend und Frontend als größte Herausforderung dargestellt. So war es herausfordernd, die Netzwerkkommunikation zwischen den Pods für Frontend und Backend aufzubauen. Hier war der Einsatz des Ingress entscheidend, über den die genauen Pfade definiert werden konnten, unter denen die jeweiligen Services erreicht werden können. 
+
+Im Rahmen des Projektes konnte die geplante Anwendung mit den wichtigsten Funktionalitäten implementiert werden. Mögliche Schritte, um die Anwendung weiterzuentwickeln wäre die Identifikation geeigneter Metriken für die Skalierung der einzelnen Komponenten und deren Überwachung in einem Monitoring. Desweiteren wäre es unter dem Aspekt des Datenschutzes sinnvoll, sensitive Daten (wie die Zugangsdaten zur DB) in Secrets abzubilden. 
 
 ### Screencast Deployment der Anwendung und Demo-Case
 [![IMAGE ALT TEXT HERE](assets/image-3.png)](https://www.youtube.com/watch?v=1lhZxsMKfEw)
