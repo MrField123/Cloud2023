@@ -8,5 +8,3 @@ CREATE TABLE `vouchers` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-INSERT INTO `vouchers` (`type`,`code`,`value`,`name`,`valid`) VALUES ('money','QRCode1','10','Max Muster',1);
-INSERT INTO `vouchers` (`type`,`code`,`value`,`name`,`valid`) VALUES ('money','QRCode2','20','Max Muster 2',1);
