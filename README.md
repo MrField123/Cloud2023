@@ -105,7 +105,7 @@ Im Folgenden werden zunächst die Vor- und Nachteile aufgeführt, die sich durch
 Für die Gutschein-App ist dies von großem Vorteil. Die Zugriffe auf die Anwendung werden vor allen dann hoch sein, wenn gerade eine Veranstaltung stattfindet. Damit wird die Last besonders an Wochenenden hoch sein, während sie zwischen den Veranstaltungen eher niedriger ist. Als Cloud-Native Anwendung verfügt die App über die passende Elastizität und kann für die Stoßzeiten mehr Kapazitäten zur Verfügung stellen, diese aber auch zwischen den Veranstaltungen wieder herunterfahren. Die folgende Abbildung skizziert dieses Verhalten:
 
 ![Alt text](assets/image-5.png)
-Quelle: In Anlehnung an Kratzke, N.: "Cloud-native Computing", Hanser, 2022, S.18
+<br>Quelle: In Anlehnung an Kratzke, N.: "Cloud-native Computing", Hanser, 2022, S.18
 
 **Hohe Verfügbarkeit:**
 <br>Durch die Nutzung von Cloud-Diensten können Anwendungen so konfiguriert werden, dass sie eine hohe Verfügbarkeit gewährleisten, indem sie über mehrere Regionen und Rechenzentren verteilt werden. Damit wäre es möglich, die Anwendung weltweit performant anzubieten, da sie auf unterschiedliche Rechenzentren verteilt werden kann. Man muss sich also nicht auf Veranstaltungen in einer geografischen Region spezialisieren.
@@ -136,15 +136,20 @@ Cloud-Native-Anwendungen können aufgrund von laufenden Gebühren für Cloud-Res
 
 ### Alternative Realisierungsmöglichkeiten:
 
-**On-Premise-Lösungen:**
-<br>Traditionelle On-Premise-Anwendungen bieten direkte Kontrolle über Hard- und Software, sind jedoch oft teurer in der Wartung und Skalierung. So hätte unsere Anwendung auch auf einem oder mehreren bare-metal Servern installiert werden können.
+**On-Premise-Lösung:**
+<br>Traditionelle On-Premise-Anwendungen bieten direkte Kontrolle über Hard- und Software. So hätte unsere Anwendung auch auf einem oder mehreren bare-metal Servern installiert werden können. Das Frontend hätte anstatt als Web-Anwendung als installierbare Anwendung auf Computern oder mobilen Geräten ausgeliefert werden können. Im Gegensatz zur Cloud-Native Lösung hätte man die benötigten Ressourcen jedoch dauerhaft gebunden und es wäre schwieriger, sie nur bei Veranstaltungen zu skalieren. Dadruch ergibt sich für die Cloud-Native Lösung ein Kostenvorteil gegenüber der On-Premise-Lösung. Dieser wir dadurch verstärkt, dass man sich nicht um die Wartung und Weiterentwicklung der zugrundeliegenden Infrastruktur kümmern muss. 
 
 **Hybridlösungen:**
-<br>Hybridlösungen kombinieren lokale Infrastruktur mit Cloud-Services und ermöglichen eine flexible Skalierung und Integration, können aber die Komplexität der Umgebung erhöhen. So hätte unsere Anwendung bspw. die Datenbank und die Backend-Services auf einem lokalen bare-metal Server aufgesetzt werden können, während das Frontend in der Cloud bereitgestellt wird. 
+<br>Hybridlösungen kombinieren lokale Infrastruktur mit Cloud-Services und ermöglichen eine flexible Skalierung und Integration, können aber die Komplexität der Umgebung erhöhen. So hätte die Voucher-Hub Anwendung bspw. die Datenbank und die Backend-Services auf einem lokalen bare-metal Server aufgesetzt werden können, während das Frontend in der Cloud bereitgestellt wird. 
+Eine andere Form der Hybridlösung wäre es, beispielsweise die Datenbank in der Cloud zu hosten, jedoch die App installierbar auf den Endgeräten bereitszustellen. Hybrid-Lösungen stellen eine attraktive Alternative gegenüber der kompletten Cloud-Native Anwendung dar, da sie es ermöglichen bestimmte Teile der Anwendung je nach Anforderung dort zu platzieren, wo sie sinnvoll sind. So könnte eine Anwendung mit besonders hohen Datensicherheitsanforderungen die Datenspeicherung on-premise betreiben, eine andere App könnte die Datenhaltung an einen Cloud-Provider outsourcen. 
 
 Die Entscheidung für Cloud-Native-Lösungen erfordert eine sorgfältige Abwägung der spezifischen Anforderungen des Projekts sowie der langfristigen Geschäftsziele. Während Cloud-Native-Ansätze Skalierbarkeit und Flexibilität bieten, können Kosten und Komplexität potenzielle Herausforderungen darstellen, die berücksichtigt werden müssen. Es ist ratsam, die Infrastruktur- und Betriebskosten über den gesamten Lebenszyklus hinweg zu berücksichtigen und die Abhängigkeit von einem einzelnen Cloud-Anbieter kritisch zu prüfen, um potenzielle Risiken zu minimieren.
 
 ### Wie gewährleisten Sie die Datensicherheit? Bewerten Sie dabei auch die Relevanz der DSGVO für Ihre Anwendung.
+
+#### Die Datensicherheit in der Voucher-Hub Anwendung
+In der vorliegenden Anwendung wurden keine expliziten Sicherheitsvorkehrungen getroffen, da es sich nur um einen Prototypen mit Testdaten handelt und es nie Ziel war, die Anwendung bei einem Cloud-Provider zu hosten und aus dem Internet verfügbar zu machen. Bei einer möglichen Veröffentlichung der Anwendung sind jedoch diverse Aspekte der Datensicherheit zu beachten und Mechanismen zur Sicherstellung der Datensicherheit zu implementieren. Im folgenden werden daher die Aspekte der Datensicherheit und der DSGVO erläutert, die die App als Cloud-Native Anwendung berücksichtigen muss. 
+
 #### Datensicherheit
 Es ist essentiell die Datensicherheit im gesamten Lebenszyklus der Daten sicherzustellen.<br>
 Dieser setzt sich aus folgenden Phasen zusammen:<br>
@@ -205,7 +210,7 @@ Werden personenbezogene in einer Cloud gespeichert, so muss ein Auftragsdatenver
 ### Transfer auf unsere Anwendung
 
 **Datensicherheit**<br>
-In der vorliegenden Anwendung wurden keine expliziten Sicherheitsvorkehrungen getroffen, da es nie Ziel war die Anwendung bei einem Cloud-Provider zu hosten und aus dem Internet verfügbar zu machen. Bei einer möglichen Veröffentlichung der Anwendung sind alle oben beschriebene Aspekte der Datensicherheit zu bedenken und entsprechende Mechanismen zu implementieren. 
+Die Datensicherheit in der vorliegenden Anwendung könnte zunächst in einem einfachen Schritt gestärkt werden, indem sie bei einem Cloud Provider gehostet werden und die dort verfügbaren Sicherheitsmaßnahmen implementiert. Die großen cloud-Provider wie Google, Amazon oder Microsoft sind führend im Thema Datensicherheit und bieten daher bereits viele Services an, die die Anwendung robuster machen können. In einem ersten Schritt wäre eine Verschlüsselung der personenbezogenen Daten ein sinnvoller erster Schritt. Weiterführende sicherheitsmaßnahmen, wie die Überwachung des Netzwerks oder Zero Trust, erscheinen erst bei einer umfangreicheren Implementierung sinnvoll.
 
 **DSGVO**<br>
 Die DSGVO ist für die implementierte Anwendung relevant, da sie persönliche Daten verarbeitet und speichert. In diesem Fall werden personenbezogene Daten mit den Metadaten zu jedem Gutschein gespeichert. 
@@ -220,4 +225,4 @@ Aus diesem Grund ist wichtig, dass die Anwendung die oben erörterten Anforderun
 
 4. Datenminimierung und Speicherbegrenzung: Die Anwendung sollte nur die notwendigen Daten speichern und für den vorgesehenen Zweck verwenden. Es ist wichtig sicherzustellen, dass die Daten nicht länger als nötig gespeichert werden.
 
-<br>Hieraus wird deutlich, dass es empfehlenswert ist, die Pflichten zur Erfüllung der DSGVO bereits vor Implementierung und Hosting einer Cloud-Native Anwendung genau zu kennen, um diesen gerecht zu werden. 
+<br>Hieraus wird deutlich, dass es empfehlenswert ist, die Pflichten zur Erfüllung der DSGVO bereits vor Implementierung und Hosting einer Cloud-Native Anwendung genau zu kennen, um diesen gerecht zu werden. Für die Anwendung wäre ein erster Implementierungsschritt zur Erfüllung dieser Anforderung die Implementierung einer Nutzerverwaltung. Mit verschiedeen Sichten je Nutzertyp könnte sichergestellt werden, dass nur berechtigte Nutzer Zugriff auf alle Daten haben. Der Zugriff einzelner Nutzer, die einen Gutschein besitzen, könne so auf ihre eigenen Daten reduziert werden. 
