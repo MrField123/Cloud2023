@@ -94,30 +94,29 @@ Im Folgenden werden auf Basis der im Aufgabenteil von Prof. Pfisterer realisiert
 ### Welche Vorteile und Nachteile ergeben sich für Ihre Anwendung aus der Realisierung als Cloud-Native? Zeigen Sie dabei auch alternative Realisierungsmöglichkeiten auf, stellen Sie diese der Cloud-Native Lösung gegenüber und erörtern Sie kritisch.
 
 Cloud-Native-Anwendungen bieten eine Vielzahl von Vorteilen, aber auch einige potenzielle Nachteile im Vergleich zu traditionellen On-Premise-Anwendungen. 
-Im Folgenden werden zunächst die Vor- und Nachteile einer Cloud Applikation aufgeführt und anschließend auf den konkreten Anwendungsfall transferiert. 
+Im Folgenden werden zunächst die Vor- und Nachteile aufgeführt, die sich durch die Umsetzung der Voucher-Hub Anwendung als Cloud-Native ergeben und anschließend mit alternativen Lösungsansätzen verglichen.
 
 **Vorteile von Cloud-Native-Anwendungen:**
 
 **Skalierbarkeit:**
 <br>Cloud-Native-Anwendungen können problemlos skaliert werden, um mit variablen Workloads umzugehen, da Cloud-Dienste in der Regel elastische Skalierbarkeit bieten.
-
-**Hohe Verfügbarkeit:**
-<br>Durch die Nutzung von Cloud-Diensten können Anwendungen so konfiguriert werden, dass sie eine hohe Verfügbarkeit gewährleisten, indem sie über mehrere Regionen und Rechenzentren verteilt werden.
-
-**Flexibilität:**
-<br>Cloud-Native-Anwendungen sind flexibel und anpassungsfähig, da sie es Entwicklern ermöglichen, verschiedene Services und Technologien je nach Bedarf zu verwenden, ohne sich auf spezifische Hardware oder Software festlegen zu müssen.
-
-**Automatisierung:**
-<br>Cloud-Native-Technologien ermöglichen eine umfassende Automatisierung von Bereitstellung, Skalierung, Wartung und anderen Aspekten des Betriebs, was die Effizienz erhöht und menschliche Fehler reduziert.
-
-Abschließend bleib bei den Vorteilen von Cloud-Anwendungen festzuhalten, dass diese bei einem hohen peak-to-average-Verhältnis günstiger als on-premise Lösungen sind.
-Dies ist bei periodischen Workloads der Fall. Ein Beispiel hierfür wäre ein Bezahlsystem in einer Kantine. Dieses ist periodisch zu Stoßzeiten (z. B. 9 - 9:30 Uhr und 12 - 12:30 Uhr) stark ausgelastet, außerhalb von diesen jedoch kaum.
-<br><br>
+Für die Gutschein-App ist dies von großem Vorteil. Die Zugriffe auf die Anwendung werden vor allen dann hoch sein, wenn gerade eine Veranstaltung stattfindet. Damit wird die Last besonders an Wochenenden hoch sein, während sie zwischen den Veranstaltungen eher niedriger ist. Als Cloud-Native Anwendung verfügt die App über die passende Elastizität und kann für die Stoßzeiten mehr Kapazitäten zur Verfügung stellen, diese aber auch zwischen den Veranstaltungen wieder herunterfahren. Die folgende Abbildung skizziert dieses Verhalten:
 
 ![Alt text](assets/image-5.png)
+Quelle: In Anlehnung an Kratzke, N.: "Cloud-native Computing", Hanser, 2022, S.18
 
-<br><br>
-Hierbei ist darauf zu achten, dass ein geeignetes Preismodell des Cloud-Anbieters gewählt wird, welches entsprechend dem Workload abrechnet. 
+**Hohe Verfügbarkeit:**
+<br>Durch die Nutzung von Cloud-Diensten können Anwendungen so konfiguriert werden, dass sie eine hohe Verfügbarkeit gewährleisten, indem sie über mehrere Regionen und Rechenzentren verteilt werden. Damit wäre es möglich, die Anwendung weltweit performant anzubieten, da sie auf unterschiedliche Rechenzentren verteilt werden kann. Man muss sich also nicht auf Veranstaltungen in einer geografischen Region spezialisieren.
+Die Anwendung kann außerdem direkt über den Browser aufgerufen werden und ist damit auch mobil verfügbar, was ihre Einsatzmöglichkeit nochmals erhöht. 
+
+**Flexibilität:**
+<br>Cloud-Native-Anwendungen sind flexibel und anpassungsfähig, da sie es Entwicklern ermöglichen, verschiedene Services und Technologien je nach Bedarf zu verwenden, ohne sich auf spezifische Hardware oder Software festlegen zu müssen. Durch die Kapselung der einzelnen Ressourcen in Docker Containern kann die Anwendung leicht von einem Host auf den anderen Host umgezogen werden, falls dies benötigt wird. Aufrgund der Microservices Archtiktur und der Trennung der Ressourcen auf eigene Deployments kann in der Entwicklung außerdem separat an den Teilen der Anwendung gearbeitet werden, was eine effizientere Implmentierung neuer Funktionen ermöglicht. 
+
+**Automatisierung:**
+<br>Cloud-Native-Technologien ermöglichen eine umfassende Automatisierung von Bereitstellung, Skalierung, Wartung und anderen Aspekten des Betriebs, was die Effizienz erhöht und menschliche Fehler reduziert. So wurde in der App besipielsweise ein Autoscaler implementiert, der je nach Workload die Services für lesende Zugriffe repliziert um eine performante Antwortzeit der Anwendung sicherzustellen. 
+
+Abschließend bleibt bei den Vorteilen durch die Cloud-native Implementierung hervorzuheben, dass sich diese vor allem durch das hohe peak-to-average-Verhältnis günstiger als eine on-premise Lösungen darstellt. Dies entsteht durch die periodischen Workloads. 
+Bei einer produktiven Implementierung wäre jedoch darauf zu achten, dass ein geeignetes Preismodell des Cloud-Anbieters gewählt wird, welches entsprechend dem Workload abrechnet. 
 
 **Nachteile von Cloud-Native-Anwendungen:**
 
@@ -132,10 +131,6 @@ Cloud-Native-Anwendungen können aufgrund von laufenden Gebühren für Cloud-Res
 
 **Insiderangriff:**
 <br>Administratoren der Cloud-Provider könnten umfangreichen Zugriff auf Daten haben. Dies birgst bspw. das Risiko der Wirtschaftsspionage. 
-
-### Transfer auf unsere Anwendung
-
-Die Anwendung um Gutscheine zu erstellen und zu prüfen kann insbesondere durch die Skalierbarkeit in der Cloud profitieren. So können dynamisch Ressourcen hinzugefügt werden, wenn die Anwendung eine stärkere Nutzung erfährt. Dies ist bei dem dargestellten Anwendungsfall der Webapplikation sehr wahrscheinlich der Fall, da bspw. vermehrt Codes gescannt werden, wenn eine Veranstaltung stattfindet.
 
 ### Alternative Realisierungsmöglichkeiten:
 
