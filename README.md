@@ -121,16 +121,16 @@ Bei einer produktiven Implementierung wäre jedoch darauf zu achten, dass ein ge
 **Nachteile von Cloud-Native-Anwendungen:**
 
 **Kosten:**<br>
-Cloud-Native-Anwendungen können aufgrund von laufenden Gebühren für Cloud-Ressourcen und -Dienste teurer sein als lokale Lösungen, insbesondere wenn die Skalierung nicht optimiert ist.
+Cloud-Native-Anwendungen können aufgrund von laufenden Gebühren für Cloud-Ressourcen und -Dienste teurer sein als lokale Lösungen, insbesondere wenn die Skalierung nicht optimiert ist. Da in unserer App Autscaling implementiert ist muss darauf geachtet werden, passende Metriken zu verwenden um nicht unnötige Ressourcen bereitzustellen. Auch das Abrechnungsmodell des Cloud-Providers muss sorgfältig geprüft und passend zur Anwendung ausgewählt werden. 
 
 **Komplexität:**
-<br>Die Integration und das Management mehrerer Cloud-Services können komplex sein und erfordern spezifisches Fachwissen, was den Entwicklungs- und Betriebsaufwand erhöht.
+<br>Die Integration und das Management mehrerer Cloud-Services können komplex sein und erfordern spezifisches Fachwissen, was den Entwicklungs- und Betriebsaufwand erhöht. Bereits in der im Rahmen der Projektarbeit implementierten Version sind viele unterschiedliche Komponenten enthalten, obwohl diese nur die Grundfunktionalität der Anwendung abdeckt. In einer umfangreicheren Implementierung kann die Orchestrierung, Wartung und Weiterentwicklung der einzelnen Komponenten zu einer Herausforderung werden. 
 
 **Abhängigkeit von Anbietern:**
-<br>Cloud-Native-Anwendungen sind stark von den Funktionen, der Leistung und SLAs der Cloud-Provider abhängig, was zu potenziellen Einschränkungen und Vendor-Lock-in-Risiken führen kann.
+<br>Cloud-Native-Anwendungen sind stark von den Funktionen, der Leistung und SLAs der Cloud-Provider abhängig, was zu potenziellen Einschränkungen und Vendor-Lock-in-Risiken führen kann. Wenn es beispielsweise Serverprobleme beim Cloud-Provider während eine Veranstaltung gibt, hat man kaum Möglichkeiten sich selbst um diese Probleme zu kümmern und muss auf den Support des anbieters warten. 
 
-**Insiderangriff:**
-<br>Administratoren der Cloud-Provider könnten umfangreichen Zugriff auf Daten haben. Dies birgst bspw. das Risiko der Wirtschaftsspionage. 
+**Datenhoheit:**
+<br>Da in diesem Fall die gesamte Anwendung in der Cloud deployed wird, liegen nicht nur die Daten sondern auch der Quellcode auf den Servern des Cloud-Anbieters. Administratoren der Cloud-Provider könnten umfangreichen Zugriff darauf haben. Dies birgst bspw. das Risiko der Wirtschaftsspionage. Dass die Daten auf den Servern eines Hyperscalers leigen könnte des Weiteren einen Teil der Kunden abschrecken, die sensibel auf die Speicherung ihrer personenbezogenen Daten reagieren. 
 
 ### Alternative Realisierungsmöglichkeiten:
 
