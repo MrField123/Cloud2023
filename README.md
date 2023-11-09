@@ -114,7 +114,7 @@ Abschließend bleib bei den Vorteilen von Cloud-Anwendungen festzuhalten, dass d
 Dies ist bei periodischen Workloads der Fall. Ein Beispiel hierfür wäre ein Bezahlsystem in einer Kantine. Dieses ist periodisch zu Stoßzeiten (z. B. 9 - 9:30 Uhr und 12 - 12:30 Uhr) stark ausgelastet, außerhalb von diesen jedoch kaum.
 <br><br>
 
-![Alt text](assets/image-1.png)
+![Alt text](assets/image-5.png)
 
 <br><br>
 Hierbei ist darauf zu achten, dass ein geeignetes Preismodell des Cloud-Anbieters gewählt wird, welches entsprechend dem Workload abrechnet. 
