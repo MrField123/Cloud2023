@@ -86,8 +86,9 @@ Da der Entwurf der Anwendung vorsieht, Frontend und Backend einerseits logisch v
 Im Rahmen des Projektes konnte die geplante Anwendung mit den wichtigsten Funktionalitäten implementiert werden. Mögliche Schritte, um die Anwendung weiterzuentwickeln wäre die Identifikation geeigneter Metriken für die Skalierung der einzelnen Komponenten und deren Überwachung in einem Monitoring. Desweiteren wäre es unter dem Aspekt des Datenschutzes sinnvoll, sensitive Daten (wie die Zugangsdaten zur DB) in Secrets abzubilden. 
 
 ### Screencast Deployment der Anwendung und Demo-Case
-[![IMAGE ALT TEXT HERE](assets/image-3.png)](https://www.youtube.com/watch?v=1lhZxsMKfEw)
-![Alt text](assets/Screencast_Bröker_Acker_final_version.mov)
+
+--> Der Screencast befindet sich auf oberster Ordnerebene in der Datei *Screencast_Bröker_Acker_final_version.mov*
+
 ---
 ## Aufgabenteil Prof. Sturm
 Im Folgenden werden auf Basis der im Aufgabenteil von Prof. Pfisterer realisierten Anwendung die Aufgabenstellungen von Prof. Sturm beantwortet.
