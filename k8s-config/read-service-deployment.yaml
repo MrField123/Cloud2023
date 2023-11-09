@@ -18,9 +18,9 @@ spec:
           imagePullPolicy: Never # Uses Minikubes Docker image repo (minikube only)
           ports:
             - containerPort: 8080
-          resources: # Define resource requests here
+          resources: 
             requests:
-              cpu: "100m" # Set your desired CPU request here
+              cpu: "100m" 
 
 ---
 apiVersion: autoscaling/v1

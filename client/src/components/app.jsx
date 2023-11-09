@@ -39,7 +39,6 @@ const MyApp = () => {
           <Toolbar tabbar icons bottom>
             <Link tabLink="#view-creation" tabLinkActive iconIos="f7:plus" iconMd="material:add" text="Creation" />
             <Link tabLink="#view-redemption" iconIos="f7:lightbulb_fill" iconMd="material:verified" text="Redemption" />
-            <Link tabLink="#view-management" iconIos="f7:list_bullet" iconMd="material:format_list_bulleted" text="Management" />
           </Toolbar>
 
           {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
@@ -47,9 +46,6 @@ const MyApp = () => {
 
           {/* Catalog View */}
           <View id="view-redemption" name="redemption" tab url="/redemption/" />
-
-          {/* Settings View */}
-          <View id="view-management" name="management" tab url="/management/" />
 
         </Views>
     </App>

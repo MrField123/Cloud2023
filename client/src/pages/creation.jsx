@@ -16,56 +16,33 @@ import axios from 'axios';
 
 export default () => {
 
-  // Variablen für Werte des Gutscheins
-  const [type, setType] = useState("");
+  /**Variables **/
+
+  //State variables for Voucher Creation
+  const [type, setType] = useState("Food");
   const [value, setValue] = useState(15);
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
 
-  //Variablen zur Steuerung der Sichtbarkeit
+  //State variables to control UI element visibility
   const [showReset, setShowReset] = useState(false);
   const [showCreateButton, setShowCreateButton] = useState(true);
   const [showQRCode, setShowQRCode] = useState(false);
 
+  /**Event Handlers**/
 
-  //Sichtbarkeit verändern
-  const toggleReset = () => {
-    setShowReset(!showReset);
-  };
-  const toggleCreateButton = () => {
-    setShowCreateButton(!showCreateButton);
-  };
-
-  // Function to check if all required fields are set
-  const areAllFieldsSet = () => {
-    return type !== "" && name !== "";
-  };
-
-  // API Call mit Voucher Details als JSON body
-  const sendVoucherDetails = (voucherData) => {
-    console.log(voucherData);
-    axios.post('/write/postvoucher', voucherData)
-      .then(response => {
-        console.log('Voucher details sent:', response.data);
-        // Handle the response as needed
-      })
-      .catch(error => {
-        console.error('Error sending voucher details:', error);
-        // Handle errors, e.g., show an error message to the user
-      });
-  };
-
-  // Gutschein erstellen
+  //Handle Create Voucher button 
   const handleCreateVoucher = () => {
-    const randomCode = generateRandomCode(); // Zufälliger Gutscheincode
-    setCode(randomCode); // Code an Variable übergeben
-    setShowQRCode(true); // QR Code einblenden
-    toggleReset(); // Show the "Reset" button
-    toggleCreateButton(); // Hide the "Create Voucher" button
+    // Generate random QR-Code
+    const randomCode = generateRandomCode(); 
+    setCode(randomCode); 
+    setShowQRCode(true); 
+    toggleReset(); 
+    toggleCreateButton(); 
     // Prepare voucher data in the required format
     const voucherData = {
       code: randomCode,
-      type: type, // Ensuring type is in lowercase as per the required format
+      type: type, 
       value: value,
       name: name
     };
@@ -74,8 +51,9 @@ export default () => {
     sendVoucherDetails(voucherData);
   };
 
-  // Seite zurücksetzen
-  const handleReset = () => {
+   // Handle Reset button
+   const handleReset = () => {
+    // Reset variables to default values
     setType("Food");
     setValue(15);
     setName("");
@@ -84,28 +62,15 @@ export default () => {
     toggleCreateButton();
   };
 
-  // Funktion um den QR Code herunterzuladen (Quelle: https://github.com/rosskhanas/react-qr-code/tree/master/demo)
-  const downloadQRCode = () => {
-    const svg = document.getElementById("QRCode"); //QRCode speichern
-    const svgData = new XMLSerializer().serializeToString(svg); //QR Code in XML umwandeln
-    const canvas = document.createElement("canvas"); //Canvas erstellen
-    const ctx = canvas.getContext("2d"); //Kontext abrufen, um QRCode zu zeichnen
-    const img = new Image(); //Image, um das gerenderte Bild zu speichern
-    img.onload = () => {
-      canvas.width = img.width; //Breite
-      canvas.height = img.height; //Höhe
-      ctx.drawImage(img, 0, 0); //QR Code auf Canvas zeichnen
-      const pngFile = canvas.toDataURL("image/png"); //Bild in PNG umwandeln
-      const downloadLink = document.createElement("a"); //Download Link erstellen
-      downloadLink.download = "QRCode"; //Dateiname
-      downloadLink.href = `${pngFile}`; //Verlinkung zu PNG File
-      downloadLink.click(); //Download auslösen
-    };
-    img.src = `data:image/svg+xml;base64,${btoa(svgData)}`; //SVG als Base64-URL speichern
+  /**Functionality*/
+
+
+  // Check if all required fields are set
+  const areAllFieldsSet = () => {
+    return type !== "" && name !== "";
   };
 
-
-  // Funktion zu Generierung des zufälligen Gutscheincodes
+  // Generation of a random Voucher Code
   const generateRandomCode = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let code = '';
@@ -116,15 +81,59 @@ export default () => {
     return code;
   };
 
+  // Call write-service to create voucher
+  const sendVoucherDetails = (voucherData) => {
+    console.log(voucherData);
+    axios.post('/write/postvoucher', voucherData)
+      .then(response => {
+        console.log('Voucher details sent:', response.data);
+      })
+      .catch(error => {
+        console.error('Error sending voucher details:', error);
+      });
+  };
+
+  // Download the QR Code (Source: https://github.com/rosskhanas/react-qr-code/tree/master/demo)
+  const downloadQRCode = () => {
+    const svg = document.getElementById("QRCode"); //Save QRCode in SVG 
+    const svgData = new XMLSerializer().serializeToString(svg); //Cast QR Code to XML
+    const canvas = document.createElement("canvas"); //Generate Canvas
+    const ctx = canvas.getContext("2d"); //Get context to draw QR-Code
+    const img = new Image(); //Image, , to save the rendered Picture
+    img.onload = () => {
+      canvas.width = img.width; 
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0); //Draw QR-Code on Canvas
+      const pngFile = canvas.toDataURL("image/png"); //Convert to PNG-File
+      const downloadLink = document.createElement("a"); //Generate a Download Link
+      downloadLink.download = "QRCode"; //Set the File Name
+      downloadLink.href = `${pngFile}`; //Link to the PNG-File
+      downloadLink.click(); //Trigger Download
+    };
+    img.src = `data:image/svg+xml;base64,${btoa(svgData)}`; //Save SVG as Base-64-URL
+  };
+
+  //Toggle visibility of Reset Button
+  const toggleReset = () => {
+    setShowReset(!showReset);
+  };
+
+  //Toggle Visibilty of Create Button
+  const toggleCreateButton = () => {
+    setShowCreateButton(!showCreateButton);
+  };
 
   return (
     <Page name="creation">
+      {/* Top Navbar */}
       <Navbar large sliding={false}>
         <NavTitleLarge>Voucher Hub</NavTitleLarge>
       </Navbar>
+      {/* Page content */}
       <BlockTitle>Voucher Creation</BlockTitle>
       <Block>
         <div className="grid grid-cols-2 grid-gap">
+          {/* Input Fields for Voucher */}
           <List>
             <ListInput label="Type" type="select" name="type" placeholder="Please choose..." value={type} onChange={(e) => setType(e.target.value)}>
               <option value="Food">Food</option>
@@ -141,6 +150,7 @@ export default () => {
               <ListButton onClick={handleReset}>Reset</ListButton>
             )}
           </List>
+          {/* Created QR code */}
           {showQRCode && (
             <Block>
               <BlockTitle>Your Voucher Code</BlockTitle>

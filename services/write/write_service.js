@@ -80,7 +80,7 @@ app.post('/postvoucher', (req, res) => {
 	let data = req.body;
 	console.log(data);
 	let result = {
-		message: "Succcess"
+		message: "Success"
 	}
 	try {
 		postToDatabase(data);
@@ -98,7 +98,7 @@ app.post('/postvoucher', (req, res) => {
 	let voucherCode = req.params["code"];
 	console.log(voucherCode);
 	let result = {
-		message: "Succcess"
+		message: "Success"
 	}
 	try {
 		updateDatabase(voucherCode);
@@ -116,7 +116,7 @@ app.use(function (req, res) {
     res.status(404).send(`Route '${req.originalUrl}' not found`);
 });
 
-// Error handling middleware (optional but recommended)
+// Error handling middleware 
 app.use(function (err, req, res, next) {
     console.error(err.stack);
     res.status(500).send('Internal server error');
