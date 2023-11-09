@@ -13,13 +13,6 @@ docker build -t read-service .
 
 cd ../../k8s-config
 
-# Delete deployments
-kubectl delete deployment --all
-
-# Delete services
-kubectl delete svc --all
-
-kubectl delete ingress --all
 
 # Create Kubernetes resources
 kubectl apply -f app-deployment-frontend.yaml
