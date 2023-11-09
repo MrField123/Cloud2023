@@ -29,7 +29,7 @@ Die Anwendung wird als cloud-native Anwendung realisiert und verfolgt die in der
 
 **Frontend (client)**
 <br>
-Das Frontend wurde mit dem Open-Source-Framework Framework7 und React.js realisiert (https://framework7.io/react/). Durch die eingebauten UI-Komponenten und -Layouts in Framework7 konnten eine ansprechende Anwendung mit benutzerfreundlichen Interaktionsmöglichkeiten erstellt werden. Die F7-React-Anwendung besteht aus 2 Pages, zwischen denen über die Navigationsleiste am unteren Bildschirmrand gewechselt werden kann:
+Das Frontend wurde mit dem Open-Source-Framework Framework7 und React.js realisiert (https://framework7.io/react/). Durch die eingebauten UI-Komponenten und -Layouts in Framework7 konnten eine ansprechende Anwendung mit benutzerfreundlichen Interaktionsmöglichkeiten erstellt werden. Die F7-React-Anwendung besteht aus zwei Pages, zwischen denen über die Navigationsleiste am unteren Bildschirmrand gewechselt werden kann. Diese werden im Folgenden beschrieben. 
 
 Creation: 
 Die Page Creation bietet den Veranstaltern die Möglichkeit, neue Gutscheine anzulegen. Dazu können über ein Formular der Typ und der Wert des Gutscheins festgelegt werden, sowie der Name der Person angegeben werden, auf die der Gutschein ausgestellt werden soll. Über den "Create Voucher Button" wird dann ein Gutschein mit den angegeben Metadaten angelegt. Dazu wird mithilfe des HTTP-Clients Axios der Write-Service gerufen (https://github.com/axios/axios).
@@ -161,7 +161,7 @@ Dieser setzt sich aus folgenden Phasen zusammen:<br>
  - Löschung
 
 Um die Datensicherheit zu gewährleisten, sind auch in Cloud-Native-Anwendung verschiedene Maßnahmen erforderlich. 
-Die folgende Auflistung orientiert sich an der verbreiteten "Pakerian Hexad" (nach Donn B, Parker, 1998), welche sechs Attribute der IT-Sicherheit umfasst:
+Die folgende Auflistung orientiert sich an der verbreiteten "Pakerian Hexad" (nach Donn B. Parker, 1998), welche sechs Attribute der IT-Sicherheit umfasst:
  - **Vertraulichkeit:** Nur berechtigte Personen sollten Zugriff haben
  - **Integrität:** Schutz vor unberechtigter Manipulation
  - **Verfügbarkeit:** Verfügbarkeit der Daten
@@ -210,7 +210,7 @@ Werden personenbezogene in einer Cloud gespeichert, so muss ein Auftragsdatenver
 ### Transfer auf unsere Anwendung
 
 **Datensicherheit**<br>
-Die Datensicherheit in der vorliegenden Anwendung könnte zunächst in einem einfachen Schritt gestärkt werden, indem sie bei einem Cloud Provider gehostet werden und die dort verfügbaren Sicherheitsmaßnahmen implementiert. Die großen cloud-Provider wie Google, Amazon oder Microsoft sind führend im Thema Datensicherheit und bieten daher bereits viele Services an, die die Anwendung robuster machen können. In einem ersten Schritt wäre eine Verschlüsselung der personenbezogenen Daten ein sinnvoller erster Schritt. Weiterführende sicherheitsmaßnahmen, wie die Überwachung des Netzwerks oder Zero Trust, erscheinen erst bei einer umfangreicheren Implementierung sinnvoll.
+Die Datensicherheit in der vorliegenden Anwendung könnte zunächst in einem einfachen Schritt gestärkt werden, indem sie bei einem Cloud Provider gehostet werden und die dort verfügbaren Sicherheitsmaßnahmen implementiert. Die großen cloud-Provider wie Google, Amazon oder Microsoft sind führend im Thema Datensicherheit und bieten daher bereits viele Services an, die die Anwendung robuster machen können. In einem ersten Schritt wäre eine Verschlüsselung der personenbezogenen Daten ein sinnvoller erster Schritt. Weiterführende Sicherheitsmaßnahmen, wie die Überwachung des Netzwerks oder Zero Trust, erscheinen erst bei einer umfangreicheren Implementierung sinnvoll.
 
 **DSGVO**<br>
 Die DSGVO ist für die implementierte Anwendung relevant, da sie persönliche Daten verarbeitet und speichert. In diesem Fall werden personenbezogene Daten mit den Metadaten zu jedem Gutschein gespeichert. 
@@ -225,4 +225,4 @@ Aus diesem Grund ist wichtig, dass die Anwendung die oben erörterten Anforderun
 
 4. Datenminimierung und Speicherbegrenzung: Die Anwendung sollte nur die notwendigen Daten speichern und für den vorgesehenen Zweck verwenden. Es ist wichtig sicherzustellen, dass die Daten nicht länger als nötig gespeichert werden.
 
-<br>Hieraus wird deutlich, dass es empfehlenswert ist, die Pflichten zur Erfüllung der DSGVO bereits vor Implementierung und Hosting einer Cloud-Native Anwendung genau zu kennen, um diesen gerecht zu werden. Für die Anwendung wäre ein erster Implementierungsschritt zur Erfüllung dieser Anforderung die Implementierung einer Nutzerverwaltung. Mit verschiedeen Sichten je Nutzertyp könnte sichergestellt werden, dass nur berechtigte Nutzer Zugriff auf alle Daten haben. Der Zugriff einzelner Nutzer, die einen Gutschein besitzen, könne so auf ihre eigenen Daten reduziert werden. 
+<br>Hieraus wird deutlich, dass es empfehlenswert ist, die Pflichten zur Erfüllung der DSGVO bereits vor Implementierung und Hosting einer Cloud-Native Anwendung genau zu kennen, um diesen gerecht zu werden. Für die Anwendung wäre ein erster Implementierungsschritt zur Erfüllung dieser Anforderung die Implementierung einer Nutzerverwaltung. Mit verschiedeen Sichten je Nutzertyp könnte sichergestellt werden, dass nur berechtigte Nutzer Zugriff auf alle Daten haben. Der Zugriff einzelner Nutzer, die einen Gutschein besitzen, könne so auf ihre eigenen Daten reduziert werden.
